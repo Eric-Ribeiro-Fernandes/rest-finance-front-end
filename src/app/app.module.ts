@@ -14,6 +14,7 @@ import { ExtratoOperacoesComponent } from './components/main/extrato-operacoes/e
 import { PrecoMedioComponent } from './components/main/preco-medio/preco-medio.component';
 import { PesquiseTickerComponent } from './components/main/pesquise-ticker/pesquise-ticker.component';
 import { MonitoracaoComponent } from './components/main/monitoracao/monitoracao.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MonitoracaoComponent } from './components/main/monitoracao/monitoracao.
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
