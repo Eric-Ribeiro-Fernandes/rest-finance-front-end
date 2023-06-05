@@ -14,7 +14,12 @@ import { ExtratoOperacoesComponent } from './components/main/extrato-operacoes/e
 import { PrecoMedioComponent } from './components/main/preco-medio/preco-medio.component';
 import { PesquiseTickerComponent } from './components/main/pesquise-ticker/pesquise-ticker.component';
 import { MonitoracaoComponent } from './components/main/monitoracao/monitoracao.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule } from '@angular/common/http';
+
+import {InputTextModule} from 'primeng/inputtext';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InputTextModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

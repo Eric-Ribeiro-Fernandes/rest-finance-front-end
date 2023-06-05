@@ -1,1 +1,22 @@
-<p>pesquise-ticker works!</p>
+<br>
+<label class="app-label" for="input-procurar-ticker">Buscar Ticker</label>
+<div class="container-input-procurar-ticker">
+    
+    <span class="p-input-icon-right ">
+        <input class="app-input-text" id="input-procurar-ticker" 
+        type="text" pInputText 
+        placeholder="ex: BBAS3" [(ngModel)]="tickerASerBuscado" />
+        <i 
+         [ngClass]="loading(isLoading)"></i>
+    </span>
+
+    <p-button 
+    label="Buscar" class="app-button p-button-raised" icon="pi pi-search input-icon "
+    (onClick)="buscarInformacoes(tickerASerBuscado)">
+    </p-button>
+</div>
+
+
+<div *ngIf="respostaInformacoes">
+    <p>{{dados()}} </p>
+</div>
