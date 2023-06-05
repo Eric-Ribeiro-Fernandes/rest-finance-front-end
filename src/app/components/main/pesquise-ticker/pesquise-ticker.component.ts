@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { Cotacao } from 'src/app/models/cotacao';
+import { Informacoes } from 'src/app/models/informacoes';
 import { SetoresTickers } from 'src/app/models/setores-tickers';
 import { PesquiseTickerService } from './pesquise-ticker.service';
-import { Informacoes } from 'src/app/models/informacoes';
-import { Cotacao } from 'src/app/models/cotacao';
 
 
 @Component({
@@ -29,7 +29,8 @@ export class PesquiseTickerComponent implements OnInit {
   };
   public ticker = "";
   public respostaInformacoes: Informacoes = {};
-  public respostaCotacao: Cotacao = {};
+  public respostaCotacaoAtivo: Cotacao = {};
+  public respostaCotacaoBovespa: Cotacao = {};
   public isLoading = false;
   
   @Input()
@@ -82,7 +83,7 @@ export class PesquiseTickerComponent implements OnInit {
         {
           next: 
           (dados) => {
-            this.respostaCotacao = dados;
+            this.respostaCotacaoAtivo = dados;
             this.isLoading = false;
           },
           error: 
@@ -91,7 +92,25 @@ export class PesquiseTickerComponent implements OnInit {
             this.isLoading=false;
           }
         }
-      )
+      );
+
+      // Chama endpoint de cotacao
+
+      this.service.getCotacaoBovespa()
+      .subscribe (
+        {
+          next: 
+          (dados) => {
+            this.respostaCotacaoBovespa = dados;
+            this.isLoading = false;
+          },
+          error: 
+          (error: HttpErrorResponse) => {
+            alert(error.message +  " Erro na chamada de bovespa");
+            this.isLoading=false;
+          }
+        }
+      );
 
   }
 
@@ -104,7 +123,9 @@ export class PesquiseTickerComponent implements OnInit {
 
 
   dados():string{
-    return JSON.stringify(this.respostaInformacoes) + JSON.stringify(this.respostaCotacao.data);
+    return JSON.stringify(this.respostaInformacoes) + 
+    JSON.stringify(this.respostaCotacaoAtivo.data) + 
+    JSON.stringify(this.respostaCotacaoBovespa.data);
   }
 
 

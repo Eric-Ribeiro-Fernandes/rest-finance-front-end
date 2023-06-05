@@ -32,6 +32,13 @@ export class PesquiseTickerService {
     return this.http.get<Cotacao>(this.API + tickerASerBuscado + "/cotacao");
 
   }
+
+  getCotacaoBovespa():Observable<Cotacao>{
+
+    return this.http.get<Cotacao>(this.API + "/bovespa");
+
+  }
+
 }
 
   
