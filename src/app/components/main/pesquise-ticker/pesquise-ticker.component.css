@@ -1,22 +1,26 @@
+.container-candle-stick {
 
-.container-candle-stick{
-    display: flex ;
-    margin: 16px;
-    box-shadow: inset;
-    
+    margin-left: 16px;
+    padding: 8px;
     
     
 }
 
 .candle-stick {
-    min-width: 100%;
-    
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto; 
+    /* display: flex;
+    justify-content: center; */
+    padding: 8px;
+
 }
 
 .lista-sobre-mim {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 .lista-sobre-mim li {
@@ -25,13 +29,20 @@
     padding: 16px;
     background-color: whitesmoke;
     border-radius: 16px;
+    box-shadow: 8px 8px darkgreen;
+    font-weight: bold;
 }
 
 .lista-sobre-mim br {
     margin: 4px
 }
 
-.main-svg{
-    
+.plot-container {
+    display: flex;
+    justify-content: center;
+}
+
+.main-svg {
+
     border-radius: 16px;
 }

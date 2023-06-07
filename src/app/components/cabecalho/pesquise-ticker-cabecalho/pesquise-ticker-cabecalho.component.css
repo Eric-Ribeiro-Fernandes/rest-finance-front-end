@@ -9,6 +9,10 @@
     margin: 8px;
 }
 
+.app-button {
+    color:  darkgreen;
+}
+
 .app-label{ 
     margin: 16px ;
 }

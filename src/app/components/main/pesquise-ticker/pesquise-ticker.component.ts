@@ -34,6 +34,7 @@ export class PesquiseTickerComponent implements OnInit {
     } else return false
   }
 
+  // TODO: Arrumar função de timestamp
 timestampToDate(timestamp: number | undefined): string  {
   if (timestamp) {
     const date= new Date(timestamp);
