@@ -20,6 +20,18 @@ import {InputTextModule} from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
+import { PesquiseTickerCabecalhoComponent } from './components/cabecalho/pesquise-ticker-cabecalho/pesquise-ticker-cabecalho.component';
+import { CandleStickComponent } from './components/graficos/candle-stick/candle-stick.component';
+import * as PlotlyJS from 'plotly.js-dist-min';
+import { PlotlyModule } from 'angular-plotly.js';
+import { SecaoRecomendacoesComponent } from './components/main/pesquise-ticker/secao-recomendacoes/secao-recomendacoes.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { MessagesModule } from 'primeng/messages';
+import { FieldsetModule } from 'primeng/fieldset';
+
+
+PlotlyModule.plotlyjs = PlotlyJS;
+
 
 @NgModule({
   declarations: [
@@ -34,7 +46,10 @@ import { FormsModule } from '@angular/forms';
     ExtratoOperacoesComponent,
     PrecoMedioComponent,
     PesquiseTickerComponent,
-    MonitoracaoComponent
+    MonitoracaoComponent,
+    PesquiseTickerCabecalhoComponent,
+    CandleStickComponent,
+    SecaoRecomendacoesComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +58,11 @@ import { FormsModule } from '@angular/forms';
     InputTextModule,
     BrowserAnimationsModule,
     ButtonModule,
-    FormsModule
+    FormsModule,
+    PlotlyModule,
+    ScrollPanelModule,
+    MessagesModule,
+    FieldsetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,22 +1,79 @@
-<br>
-<label class="app-label" for="input-procurar-ticker">Buscar Ticker</label>
-<div class="container-input-procurar-ticker">
-    
-    <span class="p-input-icon-right ">
-        <input class="app-input-text" id="input-procurar-ticker" 
-        type="text" pInputText 
-        placeholder="ex: BBAS3" [(ngModel)]="tickerASerBuscado" />
-        <i 
-         [ngClass]="loading(isLoading)"></i>
-    </span>
-
-    <p-button 
-    label="Buscar" class="app-button p-button-raised" icon="pi pi-search input-icon "
-    (onClick)="buscarInformacoes(tickerASerBuscado)">
-    </p-button>
-</div>
+<p-scrollPanel [style]="{ width: '100%', height: '100%' }">
 
 
-<div *ngIf="respostaInformacoes">
-    <p>{{dados()}} </p>
-</div>
+    <div *ngIf=!possuiDados()>
+        <!-- <p-messages [(value)]="msgInfoSemTicker" severity="warn" text="Informe um ativo para ser buscado..."> </p-messages>   -->
+
+    </div>
+    <div *ngIf=possuiDados()>
+        <div>
+            <p-fieldset legend="Informações gerais">
+                <ul class="lista-sobre-mim">
+                    <li>
+                        Nome: <br>
+                        {{respostaInformacoes.longName}}
+                    </li>
+                    <li>
+                        Setor: <br>
+                        {{respostaInformacoes.sector}}
+                    </li>
+                    <li>
+                        Dividend Yield: <br>
+                        {{respostaInformacoes.dividendYield}}
+                    </li>
+                    <li>
+                    <li>
+                        Próximo pagamento de dividendos: <br>
+                        {{timestampToDate(respostaInformacoes.exDividendDate)}}
+                    </li>
+                    <li>
+                        Beta: <br>
+                        {{respostaInformacoes.beta}}
+                    </li>
+                    <li>
+                        Risco: <br>
+                        {{respostaInformacoes.overallRisk}}
+                    </li>
+                    <li>
+                        Preço <br>
+                        {{respostaInformacoes.currentPrice}}
+                    </li>
+                    <li>
+                        Preço alvo na baixa<br>
+                        {{respostaInformacoes.targetLowPrice}}
+                    </li>
+                    <li>
+                        Preço alvo médio<br>
+                        {{respostaInformacoes.targetMeanPrice}}
+                    </li>
+                    <li>
+                        Recomendação do mercado<br>
+                        {{respostaInformacoes.recommendationKey}}
+                    </li>
+
+                    <li>
+                        Site: <br>
+                        <a href="{{respostaInformacoes.website}}">
+                            {{respostaInformacoes.website}}
+                        </a>
+                    </li>
+
+                </ul>
+            </p-fieldset>
+        </div>
+
+        <div class="container-candle-stick">
+            <plotly-plot class="candle-stick" [data]="respostaCotacaoAtivo?.data"
+                [layout]="respostaCotacaoAtivo?.layout"></plotly-plot>
+        </div>
+        <div class="container-secao">
+            <app-secao-recomendacoes></app-secao-recomendacoes>
+        </div>
+
+
+
+
+    </div>
+    {{dados()}}
+
+</p-scrollPanel>

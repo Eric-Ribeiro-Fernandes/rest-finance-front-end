@@ -1,18 +1,37 @@
-@import url('../../../../styles.css');
 
-.container-input-procurar-ticker {
+.container-candle-stick{
+    display: flex ;
+    margin: 16px;
+    box-shadow: inset;
+    
+    
+    
+}
+
+.candle-stick {
+    min-width: 100%;
+    
+}
+
+.lista-sobre-mim {
     display: flex;
-    padding: 16px;
-    align-items: center;
-
+    justify-content: space-around;
+    width: 100%;
 }
 
-.app-input-text{
+.lista-sobre-mim li {
+    align-self: center;
     margin: 8px;
+    padding: 16px;
+    background-color: whitesmoke;
+    border-radius: 16px;
 }
 
-.app-label{ 
-    margin: 16px ;
+.lista-sobre-mim br {
+    margin: 4px
 }
 
-
+.main-svg{
+    
+    border-radius: 16px;
+}

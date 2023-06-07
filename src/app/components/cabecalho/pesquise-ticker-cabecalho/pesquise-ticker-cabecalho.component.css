@@ -1,0 +1,14 @@
+.container-input-procurar-ticker {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+
+}
+
+.app-input-text{
+    margin: 8px;
+}
+
+.app-label{ 
+    margin: 16px ;
+}

@@ -1,10 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { Cotacao } from 'src/app/models/cotacao';
-import { Informacoes } from 'src/app/models/informacoes';
-import { SetoresTickers } from 'src/app/models/setores-tickers';
-import { PesquiseTickerService } from './pesquise-ticker.service';
 
+import { Component, Input, OnInit } from '@angular/core';
+import { Informacoes } from 'src/app/models/informacoes';
+import { PesquiseTickerService } from './pesquise-ticker.service';
+import { PlotlyTemplate } from 'src/app/models/plotly-template';
 
 @Component({
   selector: 'app-pesquise-ticker',
@@ -13,120 +11,46 @@ import { PesquiseTickerService } from './pesquise-ticker.service';
 })
 
 export class PesquiseTickerComponent implements OnInit {
-  private tickers: SetoresTickers = {
-    bensIndustriais: [],
-    consumoCiclico: [],
-    consumoNaoCiclico: [],
-    financeiro: [],
-    materiaisBasicos: [],
-    outros: [],
-    petroleoGaseBiocombustveis: [],
-    saude: [],
-    tecnologiaDaInformao: [],
-    telecomunicacoes: [],
-    utilidadePublica: [],
 
-  };
-  public ticker = "";
   public respostaInformacoes: Informacoes = {};
-  public respostaCotacaoAtivo: Cotacao = {};
-  public respostaCotacaoBovespa: Cotacao = {};
-  public isLoading = false;
-  
-  @Input()
-  tickerASerBuscado:string = "";
+  public respostaCotacaoAtivo?: PlotlyTemplate;
 
+  public msgInfoSemTicker = {
+    text: "Informe um ativo para ser buscado...",
+    severity: 'info'
+  }
 
   constructor(
     private service: PesquiseTickerService) { }
 
   ngOnInit(): void {
 
-    this.service.getTickers()
-      .subscribe({
-        next:
-          (dados) => {
-            this.tickers = dados;
-          },
-        error:
-          (erro: HttpErrorResponse) => {
-            alert(erro.message)
-          }
-      });
 
   }
 
-  buscarInformacoes(tickerASerBuscado:string){
-
-    this.isLoading=true;
-
-
-    // Chama o endpoint de informações
-    this.service.getInfo(tickerASerBuscado)
-    .subscribe( 
-      {next:
-        (dados)=> {
-        this.respostaInformacoes = dados;
-        this.isLoading=false;
-      }, 
-      error:
-      (error: HttpErrorResponse) => { 
-        alert(error.message +  " Erro na chamada de info");
-        this.isLoading=false;
-      }});
-
-
-      // Chama endpoint de cotacao
-
-      this.service.getCotacao(tickerASerBuscado)
-      .subscribe (
-        {
-          next: 
-          (dados) => {
-            this.respostaCotacaoAtivo = dados;
-            this.isLoading = false;
-          },
-          error: 
-          (error: HttpErrorResponse) => {
-            alert(error.message +  " Erro na chamada de cotacao");
-            this.isLoading=false;
-          }
-        }
-      );
-
-      // Chama endpoint de cotacao
-
-      this.service.getCotacaoBovespa()
-      .subscribe (
-        {
-          next: 
-          (dados) => {
-            this.respostaCotacaoBovespa = dados;
-            this.isLoading = false;
-          },
-          error: 
-          (error: HttpErrorResponse) => {
-            alert(error.message +  " Erro na chamada de bovespa");
-            this.isLoading=false;
-          }
-        }
-      );
-
+  possuiDados(): boolean {
+    if (this.respostaInformacoes.longName) {
+      return true
+    } else return false
   }
 
-  loading(isLoading:boolean):string{
-    if(isLoading){
-      return "pi pi-spin pi-spinner";
-    } else return "";
+timestampToDate(timestamp: number | undefined): string  {
+  if (timestamp) {
+    const date= new Date(timestamp);
+    
+
+    return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
+  } else return ""
+}
+
+  dados(): void {
+    this.respostaInformacoes = this.service.respostaInformacoes;
+    this.respostaCotacaoAtivo = this.service.respostaCotacaoAtivo;
+
 
   }
 
 
-  dados():string{
-    return JSON.stringify(this.respostaInformacoes) + 
-    JSON.stringify(this.respostaCotacaoAtivo.data) + 
-    JSON.stringify(this.respostaCotacaoBovespa.data);
-  }
 
 
 }
