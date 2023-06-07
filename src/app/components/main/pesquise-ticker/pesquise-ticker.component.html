@@ -6,9 +6,9 @@
 
     </div>
     <div *ngIf=possuiDados()>
-        <div>
+        <div class='container-secoes'>
             <p-fieldset legend="Informações gerais">
-                <ul class="lista-sobre-mim">
+                <ul class="lista-secao">
                     <li>
                         Nome: <br>
                         {{respostaInformacoes.longName}}
@@ -18,32 +18,12 @@
                         {{respostaInformacoes.sector}}
                     </li>
                     <li>
-                        Dividend Yield: <br>
-                        {{respostaInformacoes.dividendYield}}
-                    </li>
-                    <li>
-                        Próximo pgto de div: <br>
-                        {{timestampToDate(respostaInformacoes.exDividendDate)}}
-                    </li>
-                    <li>
                         Beta: <br>
                         {{respostaInformacoes.beta}}
                     </li>
                     <li>
                         Risco: <br>
                         {{respostaInformacoes.overallRisk}}
-                    </li>
-                    <li>
-                        Preço <br>
-                        {{respostaInformacoes.currentPrice}}
-                    </li>
-                    <li>
-                        Preço alvo na baixa<br>
-                        {{respostaInformacoes.targetLowPrice}}
-                    </li>
-                    <li>
-                        Preço alvo médio<br>
-                        {{respostaInformacoes.targetMeanPrice}}
                     </li>
                     <li>
                         Recomendação do mercado<br>
@@ -59,14 +39,134 @@
 
                 </ul>
             </p-fieldset>
+            <p-fieldset legend="Dividendos ">
+                <ul class="lista-secao">
+                    <li>
+                        Dividend Yield: <br>
+                        {{respostaInformacoes.dividendYield}}
+                    </li>
+                    <li>
+                        Média de 5 anos Dividend Yield: <br>
+                        {{respostaInformacoes.fiveYearAvgDividendYield}}
+                    </li>
+                    <li>
+                        P/L: <br>
+                        {{respostaInformacoes.trailingPE}}
+                    </li>
+                    <li>
+                        Previsão P/L: <br>
+                        {{respostaInformacoes.forwardPE}}
+                    </li>
+
+                    <li>
+                        Dividend Rate: <br>
+                        {{respostaInformacoes.dividendRate}}
+                    </li>
+                    <li>
+                        Payout Ratio: <br>
+                        {{respostaInformacoes.payoutRatio}}
+                    </li>
+                    <li>
+                        LPA: <br>
+                        {{respostaInformacoes.revenuePerShare}}
+                    </li>
+                    <li>
+                        Próximo pgto de div: <br>
+                        {{timestampToDate(respostaInformacoes.exDividendDate)}}
+                    </li>
+
+                </ul>
+            </p-fieldset>
         </div>
 
         <div class="container-candle-stick">
             <plotly-plot class="candle-stick" [data]="respostaCotacaoAtivo?.data"
                 [layout]="respostaCotacaoAtivo?.layout"></plotly-plot>
         </div>
-        <div class="container-secao">
-            <app-secao-recomendacoes></app-secao-recomendacoes>
+        <div class="container-secoes">
+            <p-fieldset legend="Valor de mercado">
+                <ul class="lista-secao">
+                    <li>
+                        Preço de mercado: <br>
+                        R$ {{respostaInformacoes.currentPrice}}
+                    </li>
+                    <li>
+                        52 Week Low <br>
+                        R$ {{respostaInformacoes.fiftyTwoWeekLow}}
+                    </li>
+                    <li>
+                        52 Week High<br>
+                        R$ {{respostaInformacoes.fiftyTwoWeekHigh}}
+                    </li>
+                    <li>
+                        Média em 50 dias<br>
+                        R$ {{respostaInformacoes.fiftyDayAverage}}
+                    </li>
+                    <li>
+                        Preço alvo de compra<br>
+                        R$ {{respostaInformacoes.targetLowPrice}}
+                    </li>
+                    <li>
+                        Preço alvo de venda<br>
+                        R$ {{respostaInformacoes.targetMedianPrice}}
+                    </li>
+                    <li>
+                        Volume<br>
+                        {{respostaInformacoes.volume}}
+                    </li>
+                    <li>
+                        Volume médio<br>
+                        {{respostaInformacoes.averageVolume}}
+                    </li>
+
+                </ul>
+            </p-fieldset>
+            <p-fieldset legend="Contabilidade">
+                <ul class="lista-secao">
+                    <li>
+                        Preço contábil: <br>
+                        R$ {{respostaInformacoes.bookValue}}
+                    </li>
+                    <li>
+                        Valor da empresa: <br>
+                        R$ {{respostaInformacoes.enterpriseValue}}
+                    </li>
+                    <li>
+                        Total da dívida: <br>
+                        R$ {{respostaInformacoes.totalDebt}}
+                    </li>
+                    <li>
+                        ROA: <br>
+                        {{respostaInformacoes.returnOnAssets}}
+                    </li>
+                    <li>
+                        Fluxo de caixa operacional: <br>
+                        R$ {{respostaInformacoes.fiftyDayAverage}}
+                    </li>
+                    <li>
+                        Receita bruta: <br>
+                        R$ {{respostaInformacoes.totalRevenue}}
+                    </li>
+                    <li>
+                        Margem bruta<br>
+                        {{respostaInformacoes.grossMargins}}
+                    </li>
+                    <li>
+                        Margem líquida<br>
+                        {{respostaInformacoes.profitMargins}}
+                    </li>
+                    <li>
+                        Resultado bruto: <br>
+                        R$ {{respostaInformacoes.grossProfits}}
+                    </li>
+                    <li>
+                        ROE<br>
+                        {{respostaInformacoes.returnOnEquity}}
+                    </li>
+
+                </ul>
+            </p-fieldset>
+
         </div>
 
 
