@@ -19,7 +19,7 @@
                     </li>
                     <li>
                         Beta: <br>
-                        {{respostaInformacoes.beta}}
+                        {{respostaInformacoes.beta | number: '1.2-2'}}
                     </li>
                     <li>
                         Risco: <br>
@@ -43,36 +43,36 @@
                 <ul class="lista-secao">
                     <li>
                         Dividend Yield: <br>
-                        {{respostaInformacoes.dividendYield}}
+                        {{respostaInformacoes.dividendYield | number: '1.2-2'}}
                     </li>
                     <li>
                         Média de 5 anos Dividend Yield: <br>
-                        {{respostaInformacoes.fiveYearAvgDividendYield}}
+                        {{respostaInformacoes.fiveYearAvgDividendYield | number: '1.2-2'}}
                     </li>
                     <li>
                         P/L: <br>
-                        {{respostaInformacoes.trailingPE}}
+                        {{respostaInformacoes.trailingPE | number: '1.2-2'}}
                     </li>
                     <li>
                         Previsão P/L: <br>
-                        {{respostaInformacoes.forwardPE}}
+                        {{respostaInformacoes.forwardPE | number: '1.2-2'}}
                     </li>
 
                     <li>
                         Dividend Rate: <br>
-                        {{respostaInformacoes.dividendRate}}
+                        {{respostaInformacoes.dividendRate | number: '1.2-2'}}
                     </li>
                     <li>
                         Payout Ratio: <br>
-                        {{respostaInformacoes.payoutRatio}}
+                        {{respostaInformacoes.payoutRatio | number: '1.2-2'}}
                     </li>
                     <li>
                         LPA: <br>
-                        {{respostaInformacoes.revenuePerShare}}
+                        {{respostaInformacoes.revenuePerShare | number: '1.2-2'}}
                     </li>
                     <li>
                         Próximo pgto de div: <br>
-                        {{timestampToDate(respostaInformacoes.exDividendDate)}}
+                        {{respostaInformacoes.exDividendDate | date:"MM/dd/yy"}}
                     </li>
 
                 </ul>
@@ -88,35 +88,35 @@
                 <ul class="lista-secao">
                     <li>
                         Preço de mercado: <br>
-                        R$ {{respostaInformacoes.currentPrice}}
+                         {{respostaInformacoes.currentPrice | currency:'BRL' }}
                     </li>
                     <li>
                         52 Week Low <br>
-                        R$ {{respostaInformacoes.fiftyTwoWeekLow}}
+                         {{respostaInformacoes.fiftyTwoWeekLow | currency:'BRL'}}
                     </li>
                     <li>
                         52 Week High<br>
-                        R$ {{respostaInformacoes.fiftyTwoWeekHigh}}
+                         {{respostaInformacoes.fiftyTwoWeekHigh | currency:'BRL'}}
                     </li>
                     <li>
                         Média em 50 dias<br>
-                        R$ {{respostaInformacoes.fiftyDayAverage}}
+                         {{respostaInformacoes.fiftyDayAverage | currency:'BRL'}}
                     </li>
                     <li>
                         Preço alvo de compra<br>
-                        R$ {{respostaInformacoes.targetLowPrice}}
+                         {{respostaInformacoes.targetLowPrice | currency:'BRL'}}
                     </li>
                     <li>
                         Preço alvo de venda<br>
-                        R$ {{respostaInformacoes.targetMedianPrice}}
+                         {{respostaInformacoes.targetMedianPrice | currency:'BRL'}}
                     </li>
                     <li>
                         Volume<br>
-                        {{respostaInformacoes.volume}}
+                        {{respostaInformacoes.volume | number }}
                     </li>
                     <li>
                         Volume médio<br>
-                        {{respostaInformacoes.averageVolume}}
+                        {{respostaInformacoes.averageVolume | number }}
                     </li>
 
                 </ul>
@@ -125,43 +125,43 @@
                 <ul class="lista-secao">
                     <li>
                         Preço contábil: <br>
-                        R$ {{respostaInformacoes.bookValue}}
+                         {{respostaInformacoes.bookValue | currency:'BRL'}}
                     </li>
                     <li>
                         Valor da empresa: <br>
-                        R$ {{respostaInformacoes.enterpriseValue}}
+                         {{respostaInformacoes.enterpriseValue | currency:'BRL'}}
                     </li>
                     <li>
                         Total da dívida: <br>
-                        R$ {{respostaInformacoes.totalDebt}}
+                         {{respostaInformacoes.totalDebt | currency:'BRL'}}
                     </li>
                     <li>
                         ROA: <br>
-                        {{respostaInformacoes.returnOnAssets}}
+                        {{respostaInformacoes.returnOnAssets | percent: '1.2-2'}}
                     </li>
                     <li>
                         Fluxo de caixa operacional: <br>
-                        R$ {{respostaInformacoes.fiftyDayAverage}}
+                         {{respostaInformacoes.fiftyDayAverage | currency:'BRL'}}
                     </li>
                     <li>
                         Receita bruta: <br>
-                        R$ {{respostaInformacoes.totalRevenue}}
+                         {{respostaInformacoes.totalRevenue | currency:'BRL'}}
                     </li>
                     <li>
                         Margem bruta<br>
-                        {{respostaInformacoes.grossMargins}}
+                        {{respostaInformacoes.grossMargins | percent: '1.2-2'}}
                     </li>
                     <li>
                         Margem líquida<br>
-                        {{respostaInformacoes.profitMargins}}
+                        {{respostaInformacoes.profitMargins | percent: '1.2-2'}}
                     </li>
                     <li>
                         Resultado bruto: <br>
-                        R$ {{respostaInformacoes.grossProfits}}
+                         {{respostaInformacoes.grossProfits | currency:'BRL'}}
                     </li>
                     <li>
                         ROE<br>
-                        {{respostaInformacoes.returnOnEquity}}
+                        {{respostaInformacoes.returnOnEquity | percent: '1.2-2'}}
                     </li>
 
                 </ul>

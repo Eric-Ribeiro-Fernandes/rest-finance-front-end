@@ -3,7 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Cotacao } from 'src/app/models/cotacao';
 import { Informacoes } from 'src/app/models/informacoes';
 import { SetoresTickers } from 'src/app/models/setores-tickers';
-import { PesquiseTickerService } from '../../main/pesquise-ticker/pesquise-ticker.service';
+import { ApiFinanceService } from 'src/app/services/api-finance.service';
 import { Router } from '@angular/router';
 import { MainComponent } from '../../main/main.component';
 
@@ -37,13 +37,8 @@ export class PesquiseTickerCabecalhoComponent implements OnInit  {
   @Input()
   tickerASerBuscado: string = "";
 
-
-
-
-
-
   constructor(
-    private service: PesquiseTickerService,
+    private service: ApiFinanceService,
     private routes: Router
   ) { }
 
@@ -63,7 +58,6 @@ export class PesquiseTickerCabecalhoComponent implements OnInit  {
             this.isBuscaBemSucedida = false;
           }
       });
-
 
 
   }

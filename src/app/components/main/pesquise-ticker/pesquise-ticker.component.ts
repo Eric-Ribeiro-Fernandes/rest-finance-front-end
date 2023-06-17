@@ -1,7 +1,7 @@
 
 import { Component, Input, OnInit } from '@angular/core';
 import { Informacoes } from 'src/app/models/informacoes';
-import { PesquiseTickerService } from './pesquise-ticker.service';
+import { ApiFinanceService } from 'src/app/services/api-finance.service';
 import { PlotlyTemplate } from 'src/app/models/plotly-template';
 
 @Component({
@@ -21,21 +21,21 @@ export class PesquiseTickerComponent implements OnInit {
   }
 
   constructor(
-    private service: PesquiseTickerService) { }
+    private service: ApiFinanceService) { }
 
   ngOnInit(): void {
 
 
   }
 
-  possuiDados(): boolean {
+public possuiDados(): boolean {
     if (this.respostaInformacoes.longName) {
       return true
     } else return false
   }
 
   // TODO: Arrumar função de timestamp
-timestampToDate(timestamp: number | undefined): string  {
+public timestampToDate(timestamp: number | undefined): string  {
   if (timestamp) {
     const date= new Date(timestamp);
     
@@ -44,7 +44,7 @@ timestampToDate(timestamp: number | undefined): string  {
   } else return ""
 }
 
-  dados(): void {
+public dados(): void {
     this.respostaInformacoes = this.service.respostaInformacoes;
     this.respostaCotacaoAtivo = this.service.respostaCotacaoAtivo;
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +7,6 @@ import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { RodapeComponent } from './components/rodape/rodape.component';
 import { MainComponent } from './components/main/main.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './components/main/dashboard/dashboard.component';
 import { LancarOperacaoComponent } from './components/main/lancar-operacao/lancar-operacao.component';
 import { ExtratoOperacoesComponent } from './components/main/extrato-operacoes/extrato-operacoes.component';
@@ -21,13 +20,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { PesquiseTickerCabecalhoComponent } from './components/cabecalho/pesquise-ticker-cabecalho/pesquise-ticker-cabecalho.component';
-import { CandleStickComponent } from './components/graficos/candle-stick/candle-stick.component';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
-import { SecaoRecomendacoesComponent } from './components/main/pesquise-ticker/secao-recomendacoes/secao-recomendacoes.component';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { MessagesModule } from 'primeng/messages';
 import { FieldsetModule } from 'primeng/fieldset';
+import { DatePipe, CurrencyPipe, PercentPipe, DecimalPipe } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(ptBr);
 
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -40,7 +42,6 @@ PlotlyModule.plotlyjs = PlotlyJS;
     RodapeComponent,
     MainComponent,
     MenuComponent,
-    HomeComponent,
     DashboardComponent,
     LancarOperacaoComponent,
     ExtratoOperacoesComponent,
@@ -48,8 +49,6 @@ PlotlyModule.plotlyjs = PlotlyJS;
     PesquiseTickerComponent,
     MonitoracaoComponent,
     PesquiseTickerCabecalhoComponent,
-    CandleStickComponent,
-    SecaoRecomendacoesComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +61,13 @@ PlotlyModule.plotlyjs = PlotlyJS;
     PlotlyModule,
     ScrollPanelModule,
     MessagesModule,
-    FieldsetModule
+    FieldsetModule,
+    DatePipe,
+    CurrencyPipe,
+    PercentPipe,
+    DecimalPipe
   ],
-  providers: [],
+  providers: [ { provide: LOCALE_ID, useValue: 'pt'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
