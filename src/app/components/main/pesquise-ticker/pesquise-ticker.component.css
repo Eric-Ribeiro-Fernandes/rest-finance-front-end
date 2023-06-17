@@ -25,6 +25,10 @@ p-fieldset {
     margin: 16px;
 }
 
+br {
+    margin: 4px;
+}
+
 .lista-secao {
 
     display: flex;
@@ -41,6 +45,11 @@ p-fieldset {
     border-radius: 16px;
     box-shadow: 8px 8px darkgreen;
     font-weight: bold;
+}
+
+.lista-secao li:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
 }
 
 .lista-secao br {

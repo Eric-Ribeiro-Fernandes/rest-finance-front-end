@@ -23,7 +23,7 @@
                     </li>
                     <li>
                         Risco: <br>
-                        {{respostaInformacoes.overallRisk}}
+                        {{respostaInformacoes.shareHolderRightsRisk}}
                     </li>
                     <li>
                         Recomendação do mercado<br>
@@ -42,8 +42,12 @@
             <p-fieldset legend="Dividendos ">
                 <ul class="lista-secao">
                     <li>
-                        Dividend Yield: <br>
-                        {{respostaInformacoes.dividendYield | number: '1.2-2'}}
+                        Dividend Yield Anual: <br>
+                        {{respostaInformacoes.trailingAnnualDividendYield | percent: '1.2-2'}}
+                    </li>
+                    <li>
+                        Dividend Yield restante ano: <br>
+                        {{respostaInformacoes.dividendYield| percent: '1.2-2'}}
                     </li>
                     <li>
                         Média de 5 anos Dividend Yield: <br>
@@ -64,7 +68,7 @@
                     </li>
                     <li>
                         Payout Ratio: <br>
-                        {{respostaInformacoes.payoutRatio | number: '1.2-2'}}
+                        {{respostaInformacoes.payoutRatio | percent: '1.2-2'}}
                     </li>
                     <li>
                         LPA: <br>
@@ -72,7 +76,7 @@
                     </li>
                     <li>
                         Próximo pgto de div: <br>
-                        {{respostaInformacoes.exDividendDate | date:"MM/dd/yy"}}
+                        {{(respostaInformacoes.exDividendDate ? respostaInformacoes.exDividendDate * 1000 : "")| date:"dd/MM/yyyy"}}
                     </li>
 
                 </ul>
@@ -128,25 +132,44 @@
                          {{respostaInformacoes.bookValue | currency:'BRL'}}
                     </li>
                     <li>
-                        Valor da empresa: <br>
-                         {{respostaInformacoes.enterpriseValue | currency:'BRL'}}
+                        Price to book: <br>
+                         {{respostaInformacoes.priceToBook | number: '1.2-2'}}
                     </li>
                     <li>
-                        Total da dívida: <br>
-                         {{respostaInformacoes.totalDebt | currency:'BRL'}}
-                    </li>
-                    <li>
-                        ROA: <br>
-                        {{respostaInformacoes.returnOnAssets | percent: '1.2-2'}}
-                    </li>
-                    <li>
-                        Fluxo de caixa operacional: <br>
-                         {{respostaInformacoes.fiftyDayAverage | currency:'BRL'}}
+                        Receita por ação: <br>
+                         {{respostaInformacoes.revenuePerShare | number: '1.2-2'}}
                     </li>
                     <li>
                         Receita bruta: <br>
                          {{respostaInformacoes.totalRevenue | currency:'BRL'}}
                     </li>
+                    <li>
+                        Resultado bruto: <br>
+                         {{respostaInformacoes.grossProfits | currency:'BRL'}}
+                    </li>
+                    <li>
+                        Evolução da receita no Quad.<br>
+                        {{respostaInformacoes.revenueGrowth | percent: '1.2-2'}}
+                    </li>
+                    <li>
+                        Evolução do lucro no Quad.<br>
+                        {{respostaInformacoes.earningsQuarterlyGrowth | percent: '1.2-2'}}
+                    </li>
+                    <li>
+                        Total da dívida: <br>
+                         {{respostaInformacoes.totalDebt | currency:'BRL'}}
+                    </li>
+
+                    <li>
+                        Fluxo de caixa operacional: <br>
+                         {{respostaInformacoes.operatingCashflow | currency:'BRL'}}
+                    </li>
+
+                    <li>
+                        ROA: <br>
+                        {{respostaInformacoes.returnOnAssets | percent: '1.2-2'}}
+                    </li>
+
                     <li>
                         Margem bruta<br>
                         {{respostaInformacoes.grossMargins | percent: '1.2-2'}}
@@ -155,14 +178,12 @@
                         Margem líquida<br>
                         {{respostaInformacoes.profitMargins | percent: '1.2-2'}}
                     </li>
-                    <li>
-                        Resultado bruto: <br>
-                         {{respostaInformacoes.grossProfits | currency:'BRL'}}
-                    </li>
+
                     <li>
                         ROE<br>
                         {{respostaInformacoes.returnOnEquity | percent: '1.2-2'}}
                     </li>
+
 
                 </ul>
             </p-fieldset>
