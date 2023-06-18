@@ -1,67 +1,106 @@
-.container-candle-stick {
-    padding: 16px 16px 16px 32px;
-    background: black;
-    border-radius: 16px;
-    margin: 16px;
+.container-topo {
+  margin: 16px;
+  background-color: white;
+  max-width: 20%;
+  border-radius: 16px;
+  padding: 32px;
+}
+.preco-ativo {
+  margin: 8px 0;
+  font-size: 1.5em;
+  font-weight: bold;
+}
 
+.variacao-positiva {
+  color: green;
+  font-weight: bold;
+}
+
+.variacao-negativa {
+  color: red;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+.container-candle-stick {
+  width: 70%;
+  height: 100%;
+  padding: 16px 16px 16px 32px;
+  background: white;
+  border-radius: 16px;
+  margin: 16px;
+}
+
+.container-informacoes {
+  width: 30%;
+  margin: 16px;
+  border-radius: 16px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.container-informacoes > h3 {
+  font-weight: bold;
+  font-size: 2fr;
+  padding: 16px;
+}
+
+.container-informacoes > ul > li {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+}
+
+.info-dados {
+  font-weight: bold;
 }
 
 .candle-stick {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    /* display: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* display: flex;
     justify-content: center; */
-    padding: 8px;
-
+  padding: 8px;
 }
 
 .container-secoes {
-    display: flex;
+  display: flex;
+}
 
+.container-meio {
+  display: flex;
 }
 
 p-fieldset {
-    margin: 16px;
+  margin: 16px;
 }
 
 br {
-    margin: 4px;
+  margin: 4px;
 }
 
 .lista-secao {
-
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .lista-secao li {
-    align-self: center;
-    margin: 8px;
-    padding: 16px;
-    background-color: whitesmoke;
-    border-radius: 16px;
-    box-shadow: 8px 8px darkgreen;
-    font-weight: bold;
+  align-self: center;
+  margin: 8px;
+  padding: 16px;
+  background-color: whitesmoke;
+  border-radius: 16px;
+  box-shadow: 8px 8px darkgreen;
+  font-weight: bold;
 }
 
-.lista-secao li:hover {
-    transform: scale(1.1);
-    transition: 0.2s;
-}
-
-.lista-secao br {
-    margin: 4px
-}
-
-.plot-container {
-    display: flex;
-    justify-content: center;
-}
-
-.main-svg {
-
-    border-radius: 16px;
+.resumo-empresa {
+  line-height: 24px;
 }

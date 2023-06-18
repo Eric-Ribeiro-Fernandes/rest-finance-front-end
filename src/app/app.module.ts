@@ -28,6 +28,8 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DatePipe, CurrencyPipe, PercentPipe, DecimalPipe } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { TableModule } from 'primeng/table';
+
 
 registerLocaleData(ptBr);
 
@@ -65,7 +67,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     DatePipe,
     CurrencyPipe,
     PercentPipe,
-    DecimalPipe
+    DecimalPipe,
+    TableModule
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'pt'}],
   bootstrap: [AppComponent]
