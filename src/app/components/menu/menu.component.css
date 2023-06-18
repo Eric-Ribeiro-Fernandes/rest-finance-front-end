@@ -1,11 +1,11 @@
 .img_bag_money{
-
-    padding: 32px;
-    ;
-
+  margin: 32px;  
+  border-radius: 128px;
 }
 
 .img-container {
+  
+    max-height: 35%;
     display: flex;
     justify-content: center;
 }
