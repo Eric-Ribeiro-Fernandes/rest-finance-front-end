@@ -46,12 +46,9 @@ export class PesquiseTickerComponent implements OnInit {
     } else return '';
   }
 
-  public classeVariacao() {
-    const precoAtual = this.respostaInformacoes.currentPrice;
-    const precoUltimoFechamento = this.respostaInformacoes.previousClose;
-
-    if (precoAtual && precoUltimoFechamento) {
-      if (precoAtual - precoUltimoFechamento > 0) {
+  public classeVariacao(valor: number) {
+    if (valor) {
+      if (valor > 0) {
         return true;
       } else return false;
     } else return '';

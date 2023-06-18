@@ -1,5 +1,5 @@
-.container-topo {
-  margin: 16px;
+.container-preco-ativo {
+  margin: 8px;
   background-color: white;
   max-width: 20%;
   border-radius: 16px;
@@ -68,20 +68,12 @@ h3 {
   padding: 8px;
 }
 
-.container-secoes {
-  display: flex;
-}
-
 .container-meio {
   display: flex;
 }
 
 p-fieldset {
   margin: 16px;
-}
-
-br {
-  margin: 4px;
 }
 
 .lista-secao {

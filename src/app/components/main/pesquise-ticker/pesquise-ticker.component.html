@@ -6,22 +6,30 @@
   </div>
   <div *ngIf="possuiDados()">
     <div class="container-topo">
-      <p class="nome-empresa">{{ respostaInformacoes.longName }}</p>
-      <div class="preco-ativo">
-        {{
-          respostaInformacoes.currentPrice
-            | currency : respostaInformacoes.currency
-        }}
+      <div class="container-preco-ativo">
+        <p class="nome-empresa">{{ respostaInformacoes.longName }}</p>
+        <div class="preco-ativo">
+          {{
+            respostaInformacoes.currentPrice
+              | currency : respostaInformacoes.currency
+          }}
+        </div>
+        <p
+          class="variacao-ativo"
+          [ngClass]="{
+            'variacao-positiva': classeVariacao(
+              respostaInformacoes.currentPrice! -
+                respostaInformacoes.previousClose!
+            ),
+            'variacao-negativa': !classeVariacao(
+              respostaInformacoes.currentPrice! -
+                respostaInformacoes.previousClose!
+            )
+          }"
+        >
+          {{ variacaoDia() }}
+        </p>
       </div>
-      <p
-        class="variacao-ativo"
-        [ngClass]="{
-          'variacao-positiva': classeVariacao(),
-          'variacao-negativa': !classeVariacao()
-        }"
-      >
-        {{ variacaoDia() }}
-      </p>
     </div>
 
     <div class="container-meio">
@@ -37,6 +45,12 @@
         <h3>Detalhes</h3>
         <br />
         <ul>
+          <li>
+            <div class="info-texto">Setor</div>
+            <div class="info-dados">
+              {{ respostaInformacoes.sector }}
+            </div>
+          </li>
           <li>
             <div class="info-texto">Intervalo do dia</div>
             <div class="info-dados">
@@ -85,9 +99,68 @@
             </div>
           </li>
           <li>
+            <div class="info-texto">Dividend Yield resto do ano</div>
+            <div class="info-dados">
+              {{ respostaInformacoes.dividendYield | percent : "1.2-2" }}
+            </div>
+          </li>
+          <li>
             <div class="info-texto">Receita por ação</div>
             <div class="info-dados">
               {{ respostaInformacoes.revenuePerShare | number : "1.2-2" }}
+            </div>
+          </li>
+          <li>
+            <div class="info-texto">Evolução da Receita</div>
+            <div
+              class="info-dados"
+              [ngClass]="{
+                'variacao-positiva': classeVariacao(
+                  respostaInformacoes.revenueGrowth!
+                ),
+                'variacao-negativa': !classeVariacao(
+                  respostaInformacoes.revenueGrowth!
+                )
+              }"
+            >
+              {{ respostaInformacoes.revenueGrowth! > 0 ? " ↑" : " ↓" }}
+              {{ respostaInformacoes.revenueGrowth | percent : "1.2-2" }}
+            </div>
+          </li>
+
+          <li>
+            <div class="info-texto">Evolução do Lucro</div>
+            <div
+              class="info-dados"
+              [ngClass]="{
+                'variacao-positiva': classeVariacao(
+                  respostaInformacoes.earningsGrowth!
+                ),
+                'variacao-negativa': !classeVariacao(
+                  respostaInformacoes.earningsGrowth!
+                )
+              }"
+            >
+              {{ respostaInformacoes.earningsGrowth! > 0 ? " ↑" : " ↓" }}
+              {{ respostaInformacoes.earningsGrowth | percent : "1.2-2" }}
+            </div>
+          </li>
+          <li>
+            <div class="info-texto">Margem Bruta</div>
+            <div class="info-dados">
+              {{ respostaInformacoes.operatingMargins | percent : "1.2-2" }}
+            </div>
+          </li>
+          <li>
+            <div class="info-texto">Margem Líquida</div>
+            <div class="info-dados">
+              {{ respostaInformacoes.profitMargins | percent : "1.2-2" }}
+            </div>
+          </li>
+          <li>
+            <div class="info-texto">Fluxo de caixa operacional</div>
+            <div class="info-dados">
+              {{ respostaInformacoes.operatingCashflow | number }}
             </div>
           </li>
           <li>
