@@ -2,18 +2,19 @@
   [style]="{ width: '100%', height: '100%', backgroudColor: 'whitesmoke' }"
 >
   <div *ngIf="!possuiDados()">
-    <!-- <p-messages [(value)]="msgInfoSemTicker" severity="warn" text="Informe um ativo para ser buscado..."> </p-messages>   -->
+    <p-messages severity="warn" text="Informe um ativo para ser buscado...">
+    </p-messages>
   </div>
   <div *ngIf="possuiDados()">
     <div class="container-topo">
       <div class="container-preco-ativo">
         <p class="nome-empresa">{{ respostaInformacoes.longName }}</p>
-        <div class="preco-ativo">
+        <p class="preco-ativo">
           {{
             respostaInformacoes.currentPrice
               | currency : respostaInformacoes.currency
           }}
-        </div>
+        </p>
         <p
           class="variacao-ativo"
           [ngClass]="{
@@ -30,6 +31,125 @@
           {{ variacaoDia() }}
         </p>
       </div>
+
+      <p-tabView class="tab-informacoes">
+        <p-tabPanel header="Mercado" class="tab-informacoes-mercado">
+          <div class="container-mercado">
+            <div class="item-mercado">
+              <h4>Bovespa</h4>
+              <p class="preco-ativo">
+                {{ "A definir" }}
+              </p>
+            </div>
+
+            <div class="item-mercado">
+              <h4>Recomendação</h4>
+              <p class="preco-ativo">
+                {{ respostaInformacoes.recommendationKey | uppercase }}
+              </p>
+            </div>
+            <div class="item-mercado">
+              <h4>Previous Close</h4>
+              <p class="preco-ativo">
+                {{
+                  respostaInformacoes.previousClose
+                    | currency : respostaInformacoes.currency
+                }}
+              </p>
+            </div>
+
+            <div class="item-mercado">
+              <h4>50 day Average</h4>
+              <p class="preco-ativo">
+                {{
+                  respostaInformacoes.fiftyDayAverage
+                    | currency : respostaInformacoes.currency
+                }}
+              </p>
+            </div>
+
+            <div class="item-mercado">
+              <h4>Var. em 52 semanas</h4>
+              <p class="preco-ativo">
+                {{
+                  (respostaInformacoes.fiftyTwoWeekHigh! -
+                    respostaInformacoes.fiftyTwoWeekLow!) /
+                    respostaInformacoes.fiftyTwoWeekLow! | percent : "1.2-2"
+                }}
+              </p>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Fundamentos contábeis">
+          <div class="container-mercado">
+            <div class="item-mercado">
+              <h4>Evolução da Receita</h4>
+              <p
+                class="preco-ativo"
+                [ngClass]="{
+                  'variacao-positiva': classeVariacao(
+                    respostaInformacoes.revenueGrowth!
+                  ),
+                  'variacao-negativa': !classeVariacao(
+                    respostaInformacoes.revenueGrowth!
+                  )
+                }"
+              >
+                {{ respostaInformacoes.revenueGrowth! > 0 ? " ↑" : " ↓" }}
+                {{ respostaInformacoes.revenueGrowth | percent : "1.2-2" }}
+              </p>
+            </div>
+            <div class="item-mercado">
+              <h4>Evolução do Lucro</h4>
+              <p
+                class="preco-ativo"
+                [ngClass]="{
+                  'variacao-positiva': classeVariacao(
+                    respostaInformacoes.earningsGrowth!
+                  ),
+                  'variacao-negativa': !classeVariacao(
+                    respostaInformacoes.earningsGrowth!
+                  )
+                }"
+              >
+                {{ respostaInformacoes.earningsGrowth! > 0 ? " ↑" : " ↓" }}
+                {{ respostaInformacoes.earningsGrowth | percent : "1.2-2" }}
+              </p>
+            </div>
+            <div class="item-mercado">
+              <h4>Margem bruta</h4>
+              <p class="preco-ativo">
+                {{ respostaInformacoes.operatingMargins | percent : "1.2-2" }}
+              </p>
+            </div>
+            <div class="item-mercado">
+              <h4>Margem líquida</h4>
+              <p class="preco-ativo">
+                {{ respostaInformacoes.profitMargins | percent : "1.2-2" }}
+              </p>
+            </div>
+            <div class="item-mercado">
+              <h4>Fluxo de caixa operacional</h4>
+              <p
+                class="preco-ativo"
+                [ngClass]="{
+                  'variacao-positiva': classeVariacao(
+                    respostaInformacoes.operatingCashflow!
+                  ),
+                  'variacao-negativa': !classeVariacao(
+                    respostaInformacoes.operatingCashflow!
+                  )
+                }"
+              >
+                {{
+                  respostaInformacoes.operatingCashflow
+                    | currency : respostaInformacoes.currency
+                }}
+              </p>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
     </div>
 
     <div class="container-meio">
@@ -111,59 +231,6 @@
             </div>
           </li>
           <li>
-            <div class="info-texto">Evolução da Receita</div>
-            <div
-              class="info-dados"
-              [ngClass]="{
-                'variacao-positiva': classeVariacao(
-                  respostaInformacoes.revenueGrowth!
-                ),
-                'variacao-negativa': !classeVariacao(
-                  respostaInformacoes.revenueGrowth!
-                )
-              }"
-            >
-              {{ respostaInformacoes.revenueGrowth! > 0 ? " ↑" : " ↓" }}
-              {{ respostaInformacoes.revenueGrowth | percent : "1.2-2" }}
-            </div>
-          </li>
-
-          <li>
-            <div class="info-texto">Evolução do Lucro</div>
-            <div
-              class="info-dados"
-              [ngClass]="{
-                'variacao-positiva': classeVariacao(
-                  respostaInformacoes.earningsGrowth!
-                ),
-                'variacao-negativa': !classeVariacao(
-                  respostaInformacoes.earningsGrowth!
-                )
-              }"
-            >
-              {{ respostaInformacoes.earningsGrowth! > 0 ? " ↑" : " ↓" }}
-              {{ respostaInformacoes.earningsGrowth | percent : "1.2-2" }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Margem Bruta</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.operatingMargins | percent : "1.2-2" }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Margem Líquida</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.profitMargins | percent : "1.2-2" }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Fluxo de caixa operacional</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.operatingCashflow | number }}
-            </div>
-          </li>
-          <li>
             <div class="info-texto">Ex-Dividend Date</div>
             <div class="info-dados">
               {{
@@ -177,8 +244,10 @@
         </ul>
       </div>
     </div>
-    <p-fieldset legend="Sobre a empresa" class="resumo-empresa">
-      {{ respostaInformacoes.longBusinessSummary }}
+    <p-fieldset legend="Sobre a empresa">
+      <p class="resumo-empresa">
+        {{ respostaInformacoes.longBusinessSummary }}
+      </p>
     </p-fieldset>
   </div>
   {{ dados() }}

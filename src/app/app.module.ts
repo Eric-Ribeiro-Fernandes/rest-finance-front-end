@@ -13,9 +13,9 @@ import { ExtratoOperacoesComponent } from './components/main/extrato-operacoes/e
 import { PrecoMedioComponent } from './components/main/preco-medio/preco-medio.component';
 import { PesquiseTickerComponent } from './components/main/pesquise-ticker/pesquise-ticker.component';
 import { MonitoracaoComponent } from './components/main/monitoracao/monitoracao.component';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
-import {InputTextModule} from 'primeng/inputtext';
+import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
@@ -25,17 +25,21 @@ import { PlotlyModule } from 'angular-plotly.js';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { MessagesModule } from 'primeng/messages';
 import { FieldsetModule } from 'primeng/fieldset';
-import { DatePipe, CurrencyPipe, PercentPipe, DecimalPipe } from '@angular/common';
+import {
+  DatePipe,
+  CurrencyPipe,
+  PercentPipe,
+  DecimalPipe,
+  UpperCasePipe,
+} from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { TableModule } from 'primeng/table';
-
+import { TabViewModule } from 'primeng/tabview';
 
 registerLocaleData(ptBr);
 
-
 PlotlyModule.plotlyjs = PlotlyJS;
-
 
 @NgModule({
   declarations: [
@@ -68,9 +72,11 @@ PlotlyModule.plotlyjs = PlotlyJS;
     CurrencyPipe,
     PercentPipe,
     DecimalPipe,
-    TableModule
+    TableModule,
+    UpperCasePipe,
+    TabViewModule,
   ],
-  providers: [ { provide: LOCALE_ID, useValue: 'pt'}],
-  bootstrap: [AppComponent]
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
