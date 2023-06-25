@@ -36,6 +36,8 @@ import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { ChartModule } from 'primeng/chart';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 registerLocaleData(ptBr);
 
@@ -75,6 +77,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
     TableModule,
     UpperCasePipe,
     TabViewModule,
+    ChartModule,
+    NgApexchartsModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],

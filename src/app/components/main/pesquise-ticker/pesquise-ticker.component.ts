@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Informacoes } from 'src/app/models/informacoes';
 import { ApiFinanceService } from 'src/app/services/api-finance.service';
 import { PlotlyTemplate } from 'src/app/models/plotly-template';
+import { Cotacao } from 'src/app/models/cotacao';
 
 @Component({
   selector: 'app-pesquise-ticker',
@@ -10,7 +11,11 @@ import { PlotlyTemplate } from 'src/app/models/plotly-template';
 })
 export class PesquiseTickerComponent implements OnInit {
   public respostaInformacoes: Informacoes = {};
-  public respostaCotacaoAtivo?: PlotlyTemplate;
+  public respostaCandle?: PlotlyTemplate;
+  public respostaCotacaoBovespa?: Cotacao;
+  public respostaCotacaoAtivoDia?: Cotacao;
+  public bovespaHoje?: number;
+  public bovespaAnterior?: number;
 
   public msgInfoSemTicker = {
     text: 'Informe um ativo para ser buscado...',
@@ -46,6 +51,28 @@ export class PesquiseTickerComponent implements OnInit {
     } else return '';
   }
 
+  public variacaoDiaBovespa() {
+    const tamanhoArray = this.respostaCotacaoBovespa?.data.length
+      ? this.respostaCotacaoBovespa?.data.length
+      : 0;
+    const precoAtual = this.respostaCotacaoBovespa?.data[tamanhoArray - 1];
+    const precoUltimoFechamento =
+      this.respostaCotacaoBovespa?.data[tamanhoArray - 2];
+
+    if (precoAtual && precoUltimoFechamento) {
+      const variacao =
+        ((precoAtual - precoUltimoFechamento) / precoUltimoFechamento) * 100;
+
+      if (variacao > 0) {
+        return `+ ${(precoAtual - precoUltimoFechamento).toFixed(
+          2
+        )} (${variacao.toFixed(2)}%) ↑`;
+      } else
+        return ` ${(precoAtual - precoUltimoFechamento).toFixed(
+          2
+        )} (${variacao.toFixed(2)}%) ↓`;
+    } else return '';
+  }
   public classeVariacao(valor: number) {
     if (valor) {
       if (valor > 0) {
@@ -56,6 +83,17 @@ export class PesquiseTickerComponent implements OnInit {
 
   public dados(): void {
     this.respostaInformacoes = this.service.respostaInformacoes;
-    this.respostaCotacaoAtivo = this.service.respostaCotacaoAtivo;
+    this.respostaCandle = this.service.respostaCandle;
+    this.respostaCotacaoBovespa = this.service.respostaCotacaoBovespa;
+    this.respostaCotacaoAtivoDia = this.service.respostaCotacaoAtivoDia;
+    this.bovespaHoje =
+      this.respostaCotacaoBovespa?.data[
+        this.respostaCotacaoBovespa?.data.length - 1
+      ];
+
+    this.bovespaAnterior =
+      this.respostaCotacaoBovespa?.data[
+        this.respostaCotacaoBovespa?.data.length - 2
+      ];
   }
 }

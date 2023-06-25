@@ -38,7 +38,20 @@
             <div class="item-mercado">
               <h4>Bovespa</h4>
               <p class="preco-ativo">
-                {{ "A definir" }}
+                {{ bovespaHoje | number }}
+              </p>
+              <p
+                class="variacao-ativo"
+                [ngClass]="{
+                  'variacao-positiva': classeVariacao(
+                    bovespaHoje! - bovespaAnterior!
+                  ),
+                  'variacao-negativa': !classeVariacao(
+                    bovespaHoje! - bovespaAnterior!
+                  )
+                }"
+              >
+                {{ variacaoDiaBovespa() }}
               </p>
             </div>
 
@@ -156,8 +169,8 @@
       <div class="container-candle-stick">
         <plotly-plot
           class="candle-stick"
-          [data]="respostaCotacaoAtivo?.data"
-          [layout]="respostaCotacaoAtivo?.layout"
+          [data]="respostaCandle?.data"
+          [layout]="respostaCandle?.layout"
         ></plotly-plot>
       </div>
 

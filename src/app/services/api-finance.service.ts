@@ -1,4 +1,4 @@
-import { Injectable, SimpleChanges  } from '@angular/core';
+import { Injectable, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SetoresTickers } from 'src/app/models/setores-tickers';
@@ -7,45 +7,38 @@ import { Cotacao } from 'src/app/models/cotacao';
 import { PlotlyTemplate } from 'src/app/models/plotly-template';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ApiFinanceService  {
-  
- private readonly API = "http://localhost:5000/";
+export class ApiFinanceService {
+  private readonly API = 'http://localhost:5000/';
 
-  public ticker = "";
+  public ticker = '';
   public respostaInformacoes: Informacoes = {};
-  public respostaCotacaoAtivo?: PlotlyTemplate ;
-  public respostaCotacaoBovespa: Cotacao = {};
-   
+  public respostaCandle?: PlotlyTemplate;
+  public respostaCotacaoBovespa?: Cotacao;
+  public respostaCotacaoAtivoDia?: Cotacao;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {}
+
+  getTickers(): Observable<SetoresTickers> {
+    return this.http.get<SetoresTickers>(this.API + 'tickers');
   }
 
-  getTickers():Observable<SetoresTickers>{
-
-    return this.http.get<SetoresTickers>(this.API + "tickers");
-
-  }
-
-  getInfo(tickerASerBuscado:string):Observable<Informacoes>{
-
+  getInfo(tickerASerBuscado: string): Observable<Informacoes> {
     return this.http.get<Informacoes>(this.API + tickerASerBuscado);
-
   }
 
-  getCotacao(tickerASerBuscado:string):Observable<PlotlyTemplate>{
-
-    return this.http.get<PlotlyTemplate>(this.API + tickerASerBuscado + "/cotacao");
-
+  getCotacao(tickerASerBuscado: string): Observable<PlotlyTemplate> {
+    return this.http.get<PlotlyTemplate>(
+      this.API + tickerASerBuscado + '/cotacao'
+    );
   }
 
-  getCotacaoBovespa():Observable<Cotacao>{
-
-    return this.http.get<Cotacao>(this.API + "/bovespa");
-
+  getCotacaoDia(tickerASerBuscado: string): Observable<Cotacao> {
+    return this.http.get<Cotacao>(this.API + tickerASerBuscado + '/dia');
   }
 
+  getCotacaoBovespa(): Observable<Cotacao> {
+    return this.http.get<Cotacao>(this.API + '/bovespa');
+  }
 }
-
-  
