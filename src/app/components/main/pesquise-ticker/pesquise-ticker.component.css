@@ -5,8 +5,14 @@
 
 h2 {
   font-size: 1.7em;
-  font-weight: bolder;
-  margin: 16px 0;
+  margin: 8px 0;
+}
+
+.container-preco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px;
 }
 
 .container-preco-ativo {
@@ -18,6 +24,10 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.container-variacao {
+  display: flex;
+  justify-content: space-between;
 }
 .preco-ativo {
   margin: 4px 0;
@@ -33,6 +43,17 @@ h2 {
 .variacao-negativa {
   color: red;
   font-weight: bold;
+}
+
+.variacao-ativo {
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.dividend-yield {
+  color: lightslategray;
+  font-weight: bolder;
+  margin: 4px 0;
 }
 
 .recomendacao {

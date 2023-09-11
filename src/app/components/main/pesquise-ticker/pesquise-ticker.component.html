@@ -8,7 +8,7 @@
   <div *ngIf="possuiDados()">
     <div class="container-topo">
       <div class="container-preco-ativo">
-        <div>
+        <div class="container-preco">
           <h2>Ativo:</h2>
 
           <p class="preco-ativo">
@@ -18,50 +18,54 @@
             }}
           </p>
           <br />
-
-          <p
-            class="variacao-ativo"
-            [ngClass]="{
-              'variacao-positiva': classeVariacao(
-                respostaInformacoes?.lastPrice! -
-                  respostaInformacoes?.previousClose!
-              ),
-              'variacao-negativa': !classeVariacao(
-                respostaInformacoes?.lastPrice! -
-                  respostaInformacoes?.previousClose!
-              )
-            }"
-          >
-            Δ1d {{ variacaoDia() }}
-          </p>
-
-          <p
-            class="variacao-ativo"
-            [ngClass]="{
-              'variacao-positiva': classeVariacao(
-                respostaInformacoes?.yearChange
-              ),
-              'variacao-negativa': !classeVariacao(
-                respostaInformacoes?.yearChange
-              )
-            }"
-          >
-            Δ12m {{ respostaInformacoes?.yearChange | percent : "1.2-2" }}
-          </p>
         </div>
-        <div>
-          <h3>
-            Δ12m Div Yield
-            {{
-              calculaDividendYield12M(respostaDividendos!) | percent : "1.2-2"
-            }}
-          </h3>
-          <h3>
-            Δ1m Div Yield
-            {{
-              calculaDividendYield1M(respostaDividendos!) | percent : "1.2-2"
-            }}
-          </h3>
+        <div class="container-variacao">
+          <div>
+            <p
+              class="variacao-ativo"
+              [ngClass]="{
+                'variacao-positiva': classeVariacao(
+                  respostaInformacoes?.lastPrice! -
+                    respostaInformacoes?.previousClose!
+                ),
+                'variacao-negativa': !classeVariacao(
+                  respostaInformacoes?.lastPrice! -
+                    respostaInformacoes?.previousClose!
+                )
+              }"
+            >
+              Δ1d {{ variacaoDia() }}
+            </p>
+
+            <p
+              class="variacao-ativo"
+              [ngClass]="{
+                'variacao-positiva': classeVariacao(
+                  respostaInformacoes?.yearChange
+                ),
+                'variacao-negativa': !classeVariacao(
+                  respostaInformacoes?.yearChange
+                )
+              }"
+            >
+              Δ12m {{ respostaInformacoes?.yearChange | percent : "1.2-2" }}
+            </p>
+          </div>
+
+          <div>
+            <p class="dividend-yield">
+              Δ12m Div Yield
+              {{
+                calculaDividendYield12M(respostaDividendos!) | percent : "1.2-2"
+              }}
+            </p>
+            <p class="dividend-yield">
+              Δ1m Div Yield
+              {{
+                calculaDividendYield1M(respostaDividendos!) | percent : "1.2-2"
+              }}
+            </p>
+          </div>
         </div>
       </div>
 
