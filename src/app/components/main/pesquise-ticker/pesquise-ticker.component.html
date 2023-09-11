@@ -9,7 +9,7 @@
     <div class="container-topo">
       <div class="container-preco-ativo">
         <div class="container-preco">
-          <h2>Ativo:</h2>
+          <h2>Preço:</h2>
 
           <p class="preco-ativo">
             {{
@@ -25,6 +25,19 @@
               class="variacao-ativo"
               [ngClass]="{
                 'variacao-positiva': classeVariacao(
+                  respostaInformacoes?.yearChange
+                ),
+                'variacao-negativa': !classeVariacao(
+                  respostaInformacoes?.yearChange
+                )
+              }"
+            >
+              Δ12m {{ respostaInformacoes?.yearChange | percent : "1.2-2" }}
+            </p>
+            <p
+              class="variacao-ativo"
+              [ngClass]="{
+                'variacao-positiva': classeVariacao(
                   respostaInformacoes?.lastPrice! -
                     respostaInformacoes?.previousClose!
                 ),
@@ -35,20 +48,6 @@
               }"
             >
               Δ1d {{ variacaoDia() }}
-            </p>
-
-            <p
-              class="variacao-ativo"
-              [ngClass]="{
-                'variacao-positiva': classeVariacao(
-                  respostaInformacoes?.yearChange
-                ),
-                'variacao-negativa': !classeVariacao(
-                  respostaInformacoes?.yearChange
-                )
-              }"
-            >
-              Δ12m {{ respostaInformacoes?.yearChange | percent : "1.2-2" }}
             </p>
           </div>
 
