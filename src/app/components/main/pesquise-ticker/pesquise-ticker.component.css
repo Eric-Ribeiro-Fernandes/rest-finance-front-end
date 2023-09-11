@@ -3,6 +3,12 @@
   justify-content: space-between;
 }
 
+h2 {
+  font-size: 1.7em;
+  font-weight: bolder;
+  margin: 16px 0;
+}
+
 .container-preco-ativo {
   margin: 16px;
   background-color: white;
@@ -14,7 +20,7 @@
   justify-content: center;
 }
 .preco-ativo {
-  margin: 8px 0;
+  margin: 4px 0;
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -127,9 +133,6 @@ p-fieldset {
   font-weight: bold;
 }
 
-.resumo-empresa {
-  line-height: 24px;
-  margin: 16px;
-  text-align: justify;
-  text-indent: 5%;
+.tabela-dividendos {
+  padding: 8px;
 }

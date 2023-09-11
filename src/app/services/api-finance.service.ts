@@ -5,6 +5,7 @@ import { SetoresTickers } from 'src/app/models/setores-tickers';
 import { Informacoes } from 'src/app/models/informacoes';
 import { Cotacao } from 'src/app/models/cotacao';
 import { PlotlyTemplate } from 'src/app/models/plotly-template';
+import { Dividendos } from '../models/dividendos';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +14,11 @@ export class ApiFinanceService {
   private readonly API = 'http://localhost:5000/';
 
   public ticker = '';
-  public respostaInformacoes: Informacoes = {};
+  public respostaInformacoes?: Informacoes;
   public respostaCandle?: PlotlyTemplate;
   public respostaCotacaoBovespa?: Cotacao;
   public respostaCotacaoAtivoDia?: Cotacao;
+  public respostaDividendos?: Dividendos;
 
   constructor(private http: HttpClient) {}
 
@@ -40,5 +42,11 @@ export class ApiFinanceService {
 
   getCotacaoBovespa(): Observable<Cotacao> {
     return this.http.get<Cotacao>(this.API + '/bovespa');
+  }
+
+  getDividendos(tickerASerBuscado: string): Observable<Dividendos> {
+    return this.http.get<Dividendos>(
+      this.API + tickerASerBuscado + '/dividendos'
+    );
   }
 }

@@ -111,6 +111,20 @@ export class PesquiseTickerCabecalhoComponent implements OnInit {
         this.isBuscaBemSucedida = false;
       },
     });
+
+    // Chama endpoint de dividendos
+    this.service.getDividendos(tickerASerBuscado).subscribe({
+      next: (dados) => {
+        this.service.respostaDividendos = dados;
+        this.isLoading = false;
+        this.isBuscaBemSucedida = true;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(' Erro na chamada de dividendos do dia', error.message);
+        this.isLoading = false;
+        this.isBuscaBemSucedida = false;
+      },
+    });
   }
 
   loading(isLoading: boolean): string {

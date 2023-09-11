@@ -8,28 +8,61 @@
   <div *ngIf="possuiDados()">
     <div class="container-topo">
       <div class="container-preco-ativo">
-        <p class="nome-empresa">{{ respostaInformacoes.longName }}</p>
-        <p class="preco-ativo">
-          {{
-            respostaInformacoes.currentPrice
-              | currency : respostaInformacoes.currency
-          }}
-        </p>
-        <p
-          class="variacao-ativo"
-          [ngClass]="{
-            'variacao-positiva': classeVariacao(
-              respostaInformacoes.currentPrice! -
-                respostaInformacoes.previousClose!
-            ),
-            'variacao-negativa': !classeVariacao(
-              respostaInformacoes.currentPrice! -
-                respostaInformacoes.previousClose!
-            )
-          }"
-        >
-          {{ variacaoDia() }}
-        </p>
+        <div>
+          <h2>Ativo:</h2>
+
+          <p class="preco-ativo">
+            {{
+              respostaInformacoes?.lastPrice
+                | currency : respostaInformacoes?.currency
+            }}
+          </p>
+          <br />
+
+          <p
+            class="variacao-ativo"
+            [ngClass]="{
+              'variacao-positiva': classeVariacao(
+                respostaInformacoes?.lastPrice! -
+                  respostaInformacoes?.previousClose!
+              ),
+              'variacao-negativa': !classeVariacao(
+                respostaInformacoes?.lastPrice! -
+                  respostaInformacoes?.previousClose!
+              )
+            }"
+          >
+            Δ1d {{ variacaoDia() }}
+          </p>
+
+          <p
+            class="variacao-ativo"
+            [ngClass]="{
+              'variacao-positiva': classeVariacao(
+                respostaInformacoes?.yearChange
+              ),
+              'variacao-negativa': !classeVariacao(
+                respostaInformacoes?.yearChange
+              )
+            }"
+          >
+            Δ12m {{ respostaInformacoes?.yearChange | percent : "1.2-2" }}
+          </p>
+        </div>
+        <div>
+          <h3>
+            Δ12m Div Yield
+            {{
+              calculaDividendYield12M(respostaDividendos!) | percent : "1.2-2"
+            }}
+          </h3>
+          <h3>
+            Δ1m Div Yield
+            {{
+              calculaDividendYield1M(respostaDividendos!) | percent : "1.2-2"
+            }}
+          </h3>
+        </div>
       </div>
 
       <p-tabView class="tab-informacoes">
@@ -56,17 +89,11 @@
             </div>
 
             <div class="item-mercado">
-              <h4>Recomendação</h4>
-              <p class="preco-ativo">
-                {{ respostaInformacoes.recommendationKey | uppercase }}
-              </p>
-            </div>
-            <div class="item-mercado">
               <h4>Previous Close</h4>
               <p class="preco-ativo">
                 {{
-                  respostaInformacoes.previousClose
-                    | currency : respostaInformacoes.currency
+                  respostaInformacoes?.previousClose
+                    | currency : respostaInformacoes?.currency
                 }}
               </p>
             </div>
@@ -75,88 +102,8 @@
               <h4>50 day Average</h4>
               <p class="preco-ativo">
                 {{
-                  respostaInformacoes.fiftyDayAverage
-                    | currency : respostaInformacoes.currency
-                }}
-              </p>
-            </div>
-
-            <div class="item-mercado">
-              <h4>Var. em 12 meses</h4>
-              <p class="preco-ativo">
-                {{
-                  (respostaInformacoes.fiftyTwoWeekHigh! -
-                    respostaInformacoes.fiftyTwoWeekLow!) /
-                    respostaInformacoes.fiftyTwoWeekLow! | percent : "1.2-2"
-                }}
-              </p>
-            </div>
-          </div>
-        </p-tabPanel>
-        <p-tabPanel header="Fundamentos contábeis">
-          <div class="container-mercado">
-            <div class="item-mercado">
-              <h4>Evolução da Receita</h4>
-              <p
-                class="preco-ativo"
-                [ngClass]="{
-                  'variacao-positiva': classeVariacao(
-                    respostaInformacoes.revenueGrowth!
-                  ),
-                  'variacao-negativa': !classeVariacao(
-                    respostaInformacoes.revenueGrowth!
-                  )
-                }"
-              >
-                {{ respostaInformacoes.revenueGrowth! > 0 ? " ↑" : " ↓" }}
-                {{ respostaInformacoes.revenueGrowth | percent : "1.2-2" }}
-              </p>
-            </div>
-            <div class="item-mercado">
-              <h4>Evolução do Lucro</h4>
-              <p
-                class="preco-ativo"
-                [ngClass]="{
-                  'variacao-positiva': classeVariacao(
-                    respostaInformacoes.earningsGrowth!
-                  ),
-                  'variacao-negativa': !classeVariacao(
-                    respostaInformacoes.earningsGrowth!
-                  )
-                }"
-              >
-                {{ respostaInformacoes.earningsGrowth! > 0 ? " ↑" : " ↓" }}
-                {{ respostaInformacoes.earningsGrowth | percent : "1.2-2" }}
-              </p>
-            </div>
-            <div class="item-mercado">
-              <h4>Margem bruta</h4>
-              <p class="preco-ativo">
-                {{ respostaInformacoes.operatingMargins | percent : "1.2-2" }}
-              </p>
-            </div>
-            <div class="item-mercado">
-              <h4>Margem líquida</h4>
-              <p class="preco-ativo">
-                {{ respostaInformacoes.profitMargins | percent : "1.2-2" }}
-              </p>
-            </div>
-            <div class="item-mercado">
-              <h4>Fluxo de caixa operacional</h4>
-              <p
-                class="preco-ativo"
-                [ngClass]="{
-                  'variacao-positiva': classeVariacao(
-                    respostaInformacoes.operatingCashflow!
-                  ),
-                  'variacao-negativa': !classeVariacao(
-                    respostaInformacoes.operatingCashflow!
-                  )
-                }"
-              >
-                {{
-                  respostaInformacoes.operatingCashflow
-                    | currency : respostaInformacoes.currency
+                  respostaInformacoes?.fiftyDayAverage
+                    | currency : respostaInformacoes?.currency
                 }}
               </p>
             </div>
@@ -179,89 +126,48 @@
         <br />
         <ul>
           <li>
-            <div class="info-texto">Setor</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.sector }}
-            </div>
-          </li>
-          <li>
             <div class="info-texto">Intervalo do dia</div>
             <div class="info-dados">
-              {{ respostaInformacoes.dayLow | number }} -
-              {{ respostaInformacoes.dayHigh | number }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Intervalo em 12 meses</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.fiftyTwoWeekLow | number }} -
-              {{ respostaInformacoes.fiftyTwoWeekHigh | number }}
+              {{ respostaInformacoes?.dayLow | number }} -
+              {{ respostaInformacoes?.dayHigh | number }}
             </div>
           </li>
           <li>
             <div class="info-texto">Volume</div>
             <div class="info-dados">
-              {{ respostaInformacoes.volume | number }}
+              {{ respostaInformacoes?.lastVolume | number }}
             </div>
           </li>
           <li>
             <div class="info-texto">Volume médio</div>
             <div class="info-dados">
-              {{ respostaInformacoes.averageVolume | number }}
+              {{ respostaInformacoes?.tenDayAverageVolume | number }}
             </div>
           </li>
-          <li>
-            <div class="info-texto">Beta</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.beta | number : "1.2-2" }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">P/L</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.trailingPE | number : "1.2-2" }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Dividend Yield Anual</div>
-            <div class="info-dados">
-              {{
-                respostaInformacoes.trailingAnnualDividendYield
-                  | percent : "1.2-2"
-              }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Dividend Yield resto do ano</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.dividendYield | percent : "1.2-2" }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Receita por ação</div>
-            <div class="info-dados">
-              {{ respostaInformacoes.revenuePerShare | number : "1.2-2" }}
-            </div>
-          </li>
-          <li>
-            <div class="info-texto">Ex-Dividend Date</div>
-            <div class="info-dados">
-              {{
-                (respostaInformacoes.exDividendDate
-                  ? respostaInformacoes.exDividendDate * 1000
-                  : ""
-                ) | date : "dd/MM/yyyy"
-              }}
-            </div>
-          </li>
+
+          <p-table
+            class="tabela-dividendos"
+            [value]="respostaDividendos?.data!.reverse()"
+            [scrollable]="true"
+            scrollHeight="300px"
+          >
+            <ng-template #name pTemplate="header">
+              <tr>
+                <th>Data</th>
+                <th>Div por ação</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-data>
+              <tr>
+                <td>{{ data.Date | date }}</td>
+                <td>{{ data.Dividends | number : "1.2-2" }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
         </ul>
       </div>
     </div>
-    <p-fieldset legend="Sobre a empresa">
-      <p class="resumo-empresa">
-        {{ respostaInformacoes.longBusinessSummary }}
-      </p>
-    </p-fieldset>
   </div>
   {{ dados() }}
 </p-scrollPanel>

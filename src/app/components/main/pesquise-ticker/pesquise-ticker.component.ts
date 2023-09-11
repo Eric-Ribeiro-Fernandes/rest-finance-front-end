@@ -3,6 +3,8 @@ import { Informacoes } from 'src/app/models/informacoes';
 import { ApiFinanceService } from 'src/app/services/api-finance.service';
 import { PlotlyTemplate } from 'src/app/models/plotly-template';
 import { Cotacao } from 'src/app/models/cotacao';
+import { Dividendos } from 'src/app/models/dividendos';
+import { json } from 'd3';
 
 @Component({
   selector: 'app-pesquise-ticker',
@@ -10,12 +12,13 @@ import { Cotacao } from 'src/app/models/cotacao';
   styleUrls: ['./pesquise-ticker.component.css'],
 })
 export class PesquiseTickerComponent implements OnInit {
-  public respostaInformacoes: Informacoes = {};
+  public respostaInformacoes?: Informacoes;
   public respostaCandle?: PlotlyTemplate;
   public respostaCotacaoBovespa?: Cotacao;
   public respostaCotacaoAtivoDia?: Cotacao;
   public bovespaHoje?: number;
   public bovespaAnterior?: number;
+  public respostaDividendos?: Dividendos;
 
   public msgInfoSemTicker = {
     text: 'Informe um ativo para ser buscado...',
@@ -27,14 +30,14 @@ export class PesquiseTickerComponent implements OnInit {
   ngOnInit(): void {}
 
   public possuiDados(): boolean {
-    if (this.respostaInformacoes.longName) {
+    if (this.respostaInformacoes?.currency) {
       return true;
     } else return false;
   }
 
   public variacaoDia() {
-    const precoAtual = this.respostaInformacoes.currentPrice;
-    const precoUltimoFechamento = this.respostaInformacoes.previousClose;
+    const precoAtual = this.respostaInformacoes?.lastPrice;
+    const precoUltimoFechamento = this.respostaInformacoes?.previousClose;
 
     if (precoAtual && precoUltimoFechamento) {
       const variacao =
@@ -73,12 +76,51 @@ export class PesquiseTickerComponent implements OnInit {
         )} (${variacao.toFixed(2)}%) ↓`;
     } else return '';
   }
-  public classeVariacao(valor: number) {
+  public classeVariacao(valor: number | undefined) {
     if (valor) {
       if (valor > 0) {
         return true;
       } else return false;
     } else return '';
+  }
+
+  public calculaDividendYield12M(resposta: Dividendos) {
+    const dados = resposta.data;
+    let dataAnterior = new Date();
+    dataAnterior.setMonth(dataAnterior.getMonth() - 12);
+
+    const dadosFiltrados = dados.filter((datanum) => {
+      return Date.parse(datanum.Date) > dataAnterior.getTime();
+    });
+
+    console.log('Dados Filtrados' + JSON.stringify(dadosFiltrados));
+    let soma = 0;
+
+    dadosFiltrados.forEach((datanum) => {
+      soma += datanum.Dividends;
+    });
+
+    return soma / this.respostaInformacoes?.lastPrice!;
+  }
+
+  // Calcula a somatoria do semestre e faz uma média para 1 mês
+  public calculaDividendYield1M(resposta: Dividendos) {
+    const dados = resposta.data;
+    let dataAnterior = new Date();
+    dataAnterior.setMonth(dataAnterior.getMonth() - 6);
+
+    const dadosFiltrados = dados.filter((datanum) => {
+      return Date.parse(datanum.Date) > dataAnterior.getTime();
+    });
+
+    console.log('Dados Filtrados' + JSON.stringify(dadosFiltrados));
+    let soma = 0;
+
+    dadosFiltrados.forEach((datanum) => {
+      soma += datanum.Dividends;
+    });
+
+    return soma / this.respostaInformacoes?.lastPrice! / 6;
   }
 
   public dados(): void {
@@ -91,6 +133,7 @@ export class PesquiseTickerComponent implements OnInit {
         this.respostaCotacaoBovespa?.data.length - 1
       ];
 
+    this.respostaDividendos = this.service.respostaDividendos;
     this.bovespaAnterior =
       this.respostaCotacaoBovespa?.data[
         this.respostaCotacaoBovespa?.data.length - 2
