@@ -1,64 +1,11 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-
 <div class="img-container">
-    <img src="../../../assets/img/menu_bag_money.svg" class="img_bag_money" alt="Bolsa com dinheiro">
-    <br>
+  <img
+    src="../../../assets/img/menu_bag_money.svg"
+    class="img_bag_money"
+    alt="Bolsa com dinheiro"
+  />
+  <br />
 </div>
-
-<nav class="menu-principal">
-    <ul>
-        <li (click)="goDashboard()"  [style]="isSelecionado(dashboardSelecionado)" >
-            <a>
-            <span class="material-symbols-outlined">
-                home
-            </span>
-                Dashboard
-            </a>
-        </li>
-        <li (click)="goLancarOperacao()" [style]="isSelecionado(lancarOperacaoSelecionado)">
-            <a>
-                <span class="material-symbols-outlined">
-                    calculate
-                    </span>
-                    Lançar operação
-                </a>
-            </li>
-            <li (click)="goExtratoOperacoes()" [style]="isSelecionado(extratoOperacoesSelecionado)"> 
-                <a>
-                    <span class="material-symbols-outlined">
-                        receipt_long
-                        </span>
-                    Extrato de operações
-                
-                </a>
-
-
-            </li>
-        <li (click)="goPrecoMedio()" [style]="isSelecionado(precoMedioSelecionado)">
-            <a>
-                <span class="material-symbols-outlined">
-                    paid
-                </span>
-                Preço médio
-            </a>
-        </li>
-        <li (click)="goPesquiseTicker()" [style]="isSelecionado(pesquiseTickerSelecionado)">
-            <a>
-                <span class="material-symbols-outlined">
-                    query_stats
-                    </span>
-                Pesquise ticker
-            </a>
-        </li>
-        <li (click)="moMonitoracao()" [style]="isSelecionado(monitoracaoSelecionado)">
-            <a>
-                <span class="material-symbols-outlined">
-                analytics
-                </span>
-                Monitoração
-            </a>
-        </li>
-    </ul>
-</nav>
-
+<div class="card flex justify-content-center">
+  <p-panelMenu [model]="items" [style]="{ width: '300px' }"></p-panelMenu>
+</div>

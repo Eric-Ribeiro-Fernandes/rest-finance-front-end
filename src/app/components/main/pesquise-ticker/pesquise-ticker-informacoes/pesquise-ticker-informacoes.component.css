@@ -1,0 +1,159 @@
+.container-topo {
+  display: flex;
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 1.7em;
+  margin: 8px 0;
+}
+
+.container-preco {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 16px;
+}
+
+.container-preco-ativo {
+  margin: 16px;
+  background-color: white;
+  width: 30%;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container-variacao {
+  display: flex;
+  justify-content: space-between;
+}
+.preco-ativo {
+  margin: 4px 0;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.variacao-positiva {
+  color: green;
+  font-weight: bold;
+}
+
+.variacao-negativa {
+  color: red;
+  font-weight: bold;
+}
+
+.variacao-ativo {
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.dividend-yield {
+  color: lightslategray;
+  font-weight: bolder;
+  margin: 4px 0;
+}
+
+.recomendacao {
+  padding: 8px 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.recomendacao-sub {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+.container-candle-stick {
+  width: 70%;
+  height: 100%;
+  padding: 16px 16px 16px 32px;
+  background: white;
+  border-radius: 16px;
+  margin: 16px;
+}
+
+.container-informacoes {
+  width: 30%;
+  margin: 16px;
+  border-radius: 16px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.container-mercado {
+  display: flex;
+  justify-content: space-around;
+}
+
+.item-mercado {
+  margin: 8px;
+}
+
+.container-informacoes > h3 {
+  font-weight: bold;
+  padding: 16px;
+}
+
+.container-informacoes > ul > li {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+}
+
+.tab-informacoes {
+  width: 70%;
+  border-radius: 16px;
+  margin: 16px;
+}
+
+.info-dados {
+  font-weight: bold;
+}
+
+.candle-stick {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* display: flex;
+      justify-content: center; */
+  padding: 8px;
+}
+
+.container-meio {
+  display: flex;
+}
+
+p-fieldset {
+  margin: 16px;
+}
+
+.lista-secao {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.lista-secao li {
+  align-self: center;
+  margin: 8px;
+  padding: 16px;
+  background-color: whitesmoke;
+  border-radius: 16px;
+  box-shadow: 8px 8px darkgreen;
+  font-weight: bold;
+}
+
+.tabela-dividendos {
+  padding: 8px;
+}
