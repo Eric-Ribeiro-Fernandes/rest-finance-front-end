@@ -176,9 +176,10 @@ body {
 }
 
 .menu {
-  background-color: white;
+  /* background-color: white;
   border-top-left-radius: 16px;
-  border-bottom-left-radius: 16px;
+  border-bottom-left-radius: 16px; */
+  max-width: 20vw;
 
   grid-area: 1 / 1 / -1 / 2;
 }
