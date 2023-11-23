@@ -1,0 +1,67 @@
+<div class="container-form-compra">
+  <h2 class="form-titulo">Formulário de COMPRAS</h2>
+  <form class="form-compra" [formGroup]="form">
+    <div class="form-campo">
+      <label class="label-input" for="data">Data:</label>
+      <p-calendar
+        name="data"
+        dateFormat="dd/mm/yy"
+        placeholder="dd/mm/yyyy"
+        formControlName="data"
+      ></p-calendar>
+    </div>
+    <div class="form-campo">
+      <label class="label-input" for="ticker">Ticker:</label>
+      <input
+        pInputText
+        name="ticker"
+        type="text"
+        formControlName="ticker"
+        placeholder="ex: MXFR11"
+      />
+    </div>
+
+    <div class="form-campo">
+      <label class="label-input" for="precoPago">Preço pago:</label>
+      <p-inputNumber
+        name="precoPago"
+        mode="currency"
+        currency="BRL"
+        formControlName="precoPago"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="form-campo">
+      <label class="label-input" for="quantidade">Quantidade:</label>
+      <p-inputNumber
+        name="quantidade"
+        locale="pt-BR"
+        formControlName="quantidade"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="form-campo">
+      <label class="label-input" for="totalCompra">Total da compra: </label>
+      <p-inputNumber
+        name="totalCompra"
+        mode="currency"
+        currency="BRL"
+        [disabled]="true"
+        formControlName="totalCompra"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="container-botao">
+      <button
+        class="form-botao"
+        label="Registrar compra"
+        type="submit"
+        [disabled]="!form.valid"
+        pButton
+      ></button>
+    </div>
+  </form>
+</div>

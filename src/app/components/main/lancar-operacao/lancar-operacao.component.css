@@ -1,0 +1,10 @@
+header {
+  display: flex;
+  justify-content: center;
+  /* background-color: white; */
+  border-radius: 16px;
+}
+
+.menu-operacoes {
+  width: 100%;
+}

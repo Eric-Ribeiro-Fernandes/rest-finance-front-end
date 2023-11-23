@@ -1,1 +1,9 @@
-<p>lancar-operacao works!</p>
+<header>
+  <p-tabMenu
+    class="menu-operacoes"
+    [activeItem]="activateMenu!"
+    [model]="items"
+  ></p-tabMenu>
+</header>
+<app-form-compra *ngIf="isCompra"></app-form-compra>
+<app-form-venda *ngIf="isVenda"></app-form-venda>

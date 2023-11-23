@@ -30,7 +30,7 @@ export class PesquiseTickerInformacoesComponent implements OnInit {
   ngOnInit(): void {}
 
   public possuiDados(): boolean {
-    if (this.respostaInformacoes?.currency) {
+    if (this.respostaCandle) {
       return true;
     } else return false;
   }

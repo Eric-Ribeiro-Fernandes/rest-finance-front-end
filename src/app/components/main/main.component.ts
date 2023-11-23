@@ -1,23 +1,14 @@
-import { Component, OnInit, OnChanges, SimpleChanges  } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
 })
-export class MainComponent implements OnInit  {
+export class MainComponent implements OnInit {
+  constructor() {}
 
-  constructor(private routes: Router) { }
-
-
-  ngOnInit(): void {
-    // this.routes.navigate(['dashboard'])
-  }
-
- public goTo(path:String){
-
-    this.routes.navigate([path]);
-  }
-
+  //TODO:Fazer chamadas do backend (Component MAIN)
+  ngOnInit(): void {}
 }

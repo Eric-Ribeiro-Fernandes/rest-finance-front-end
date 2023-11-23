@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PesquiseTickerCabecalhoComponent } from './components/main/pesquise-ticker/pesquise-ticker-cabecalho/pesquise-ticker-cabecalho.component';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
@@ -38,7 +38,14 @@ import { ChartModule } from 'primeng/chart';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PesquiseTickerInformacoesComponent } from './components/main/pesquise-ticker/pesquise-ticker-informacoes/pesquise-ticker-informacoes.component';
+import { FormCompraComponent } from './components/main/lancar-operacao/form-compra/form-compra.component';
+import { FormVendaComponent } from './components/main/lancar-operacao/form-venda/form-venda.component';
+import { TabMenuModule } from 'primeng/tabmenu';
 
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CalendarModule } from 'primeng/calendar';
 registerLocaleData(ptBr);
 
 PlotlyModule.plotlyjs = PlotlyJS;
@@ -50,13 +57,12 @@ PlotlyModule.plotlyjs = PlotlyJS;
     RodapeComponent,
     MainComponent,
     MenuComponent,
-
     LancarOperacaoComponent,
-
     PesquiseTickerComponent,
-
     PesquiseTickerCabecalhoComponent,
     PesquiseTickerInformacoesComponent,
+    FormCompraComponent,
+    FormVendaComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +86,12 @@ PlotlyModule.plotlyjs = PlotlyJS;
     ChartModule,
     NgApexchartsModule,
     PanelMenuModule,
+    TabMenuModule,
+    ReactiveFormsModule,
+    CheckboxModule,
+    RadioButtonModule,
+    InputNumberModule,
+    CalendarModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],
