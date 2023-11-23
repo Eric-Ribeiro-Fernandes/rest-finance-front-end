@@ -2,4 +2,14 @@ header {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 16px;
+  margin-right: 10vw;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+app-pesquise-ticker-informacoes {
+  min-width: 90%;
 }

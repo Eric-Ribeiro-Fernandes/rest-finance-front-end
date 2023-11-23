@@ -2,9 +2,17 @@
   display: flex;
   justify-content: space-between;
 }
+.container-img {
+  display: flex;
+  justify-content: center;
+}
+
+.container-pesquise-ticker-informacoes {
+  max-width: 100%;
+}
 
 .img-background-buscar-acao {
-  max-width: 80vw;
+  max-width: 60vw;
   border-radius: 32px;
 }
 

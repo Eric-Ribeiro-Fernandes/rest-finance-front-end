@@ -8,6 +8,7 @@
         dateFormat="dd/mm/yy"
         placeholder="dd/mm/yyyy"
         formControlName="data"
+        (onFocus)="$event.target.select()"
       ></p-calendar>
     </div>
     <div class="form-campo">
@@ -18,6 +19,7 @@
         type="text"
         formControlName="ticker"
         placeholder="ex: MXFR11"
+        [maxlength]="6"
       />
     </div>
 
@@ -25,9 +27,12 @@
       <label class="label-input" for="precoPago">Preço pago:</label>
       <p-inputNumber
         name="precoPago"
-        mode="currency"
-        currency="BRL"
+        mode="decimal"
         formControlName="precoPago"
+        [(ngModel)]="precoPago"
+        (onFocus)="$event.target.select()"
+        [minFractionDigits]="2"
+        [maxFractionDigits]="2"
       >
       </p-inputNumber>
     </div>
@@ -38,6 +43,9 @@
         name="quantidade"
         locale="pt-BR"
         formControlName="quantidade"
+        [(ngModel)]="quantidade"
+        (onFocus)="$event.target.select()"
+        [maxlength]="5"
       >
       </p-inputNumber>
     </div>
@@ -48,8 +56,8 @@
         name="totalCompra"
         mode="currency"
         currency="BRL"
-        [disabled]="true"
         formControlName="totalCompra"
+        [disabled]="true"
       >
       </p-inputNumber>
     </div>
