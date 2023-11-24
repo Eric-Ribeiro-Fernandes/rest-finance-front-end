@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Compra } from 'src/app/models/api-lancar-operacao';
 import { ApiFinanceService } from 'src/app/services/api-finance.service';
 import { ApiLancarOperacaoService } from 'src/app/services/api-lancar-operacao.service';
 import * as uuid from 'uuid';
@@ -64,18 +65,29 @@ export class FormCompraComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  tratamentoForm(): Compra {
     this.form.controls['ticker'].setValue(
       this.form.controls['ticker'].value.toLocaleUpperCase()
     );
 
-    const dados = this.form.value;
+    let dados: Compra = this.form.value;
     dados.id = uuid.v4();
 
-    this.service.registrarCompra(dados).subscribe();
+    return dados;
+  }
 
-    alert('Compra registrada');
-    this.form.reset();
-    this.ngOnInit();
+  onSubmit() {
+    const dados = this.tratamentoForm();
+
+    this.service.registrarCompra(dados).subscribe({
+      next: () => {
+        alert('Compra registrada');
+        this.form.reset();
+        this.ngOnInit();
+      },
+      error: (error) => {
+        alert(error);
+      },
+    });
   }
 }
