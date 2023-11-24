@@ -1,6 +1,20 @@
 <header>
-  <app-pesquise-ticker-cabecalho></app-pesquise-ticker-cabecalho>
+  <app-pesquise-ticker-cabecalho
+    (respostaCandle)="getRespostaCandle($event)"
+    (respostaCotacaoAtivoDia)="getRespostaCotacaoAtivoDia($event)"
+    (respostaCotacaoBovespa)="getRespostaCotacaoBovespa($event)"
+    (respostaDividendos)="getRespostaDividendos($event)"
+    (ticker)="getTicker($event)"
+    (respostaInformacoes)="getRespostaInformacoes($event)"
+  ></app-pesquise-ticker-cabecalho>
 </header>
 <main>
-  <app-pesquise-ticker-informacoes></app-pesquise-ticker-informacoes>
+  <app-pesquise-ticker-informacoes
+    [respostaInformacoes]="respostaInformacoes"
+    [respostaCandle]="respostaCandle"
+    [respostaCotacaoBovespa]="respostaCotacaoBovespa"
+    [respostaCotacaoAtivoDia]="respostaCotacaoAtivoDia"
+    [respostaDividendos]="respostaDividendos"
+    [ticker]="ticker"
+  ></app-pesquise-ticker-informacoes>
 </main>

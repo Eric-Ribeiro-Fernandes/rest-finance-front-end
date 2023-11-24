@@ -11,8 +11,11 @@
   <div class="container-pesquise-ticker-informacoes" *ngIf="possuiDados()">
     <div class="container-topo">
       <div class="container-preco-ativo">
+        <h2>
+          Ativo: <strong>{{ ticker | uppercase }}</strong>
+        </h2>
         <div class="container-preco">
-          <h2>Preço:</h2>
+          <h3>Preço:</h3>
 
           <p class="preco-ativo">
             {{
@@ -175,5 +178,4 @@
       </div>
     </div>
   </div>
-  {{ dados() }}
 </p-scrollPanel>

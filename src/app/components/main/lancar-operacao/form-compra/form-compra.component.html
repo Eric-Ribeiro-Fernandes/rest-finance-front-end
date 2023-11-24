@@ -1,6 +1,6 @@
 <div class="container-form-compra">
   <h2 class="form-titulo">Formulário de COMPRAS</h2>
-  <form class="form-compra" [formGroup]="form">
+  <form class="form-compra" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-campo">
       <label class="label-input" for="data">Data:</label>
       <p-calendar
@@ -29,7 +29,6 @@
         name="precoPago"
         mode="decimal"
         formControlName="precoPago"
-        [(ngModel)]="precoPago"
         (onFocus)="$event.target.select()"
         [minFractionDigits]="2"
         [maxFractionDigits]="2"
@@ -43,7 +42,6 @@
         name="quantidade"
         locale="pt-BR"
         formControlName="quantidade"
-        [(ngModel)]="quantidade"
         (onFocus)="$event.target.select()"
         [maxlength]="5"
       >
@@ -57,7 +55,6 @@
         mode="currency"
         currency="BRL"
         formControlName="totalCompra"
-        [disabled]="true"
       >
       </p-inputNumber>
     </div>

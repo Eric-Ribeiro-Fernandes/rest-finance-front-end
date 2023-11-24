@@ -1,0 +1,20 @@
+{
+  "historicoCompras": [
+    {
+      "id": "string",
+      "data": "28/01/1994",
+      "ticker": "teste",
+      "precoAtivo": 10,
+      "quantidade": 560,
+      "totalCompra": 5600
+    },
+    {
+      "data": "2023-11-15T03:00:00.000Z",
+      "ticker": "MXRF11",
+      "precoPago": 56,
+      "quantidade": 5,
+      "totalCompra": 280,
+      "id": "336caa2a-c6ca-4032-91e2-9fe819cfc1f2"
+    }
+  ]
+}

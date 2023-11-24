@@ -14,7 +14,7 @@ export class LancarOperacaoComponent implements OnInit {
 
   items: MenuItem[] = [
     {
-      label: 'Compra',
+      label: 'Comprar',
       icon: 'pi pi-fw pi-arrow-down-left',
 
       command: (click) => {
@@ -24,7 +24,7 @@ export class LancarOperacaoComponent implements OnInit {
     },
 
     {
-      label: 'Venda',
+      label: 'Vender',
       icon: 'pi pi-fw pi-arrow-up-right',
       command: (click) => {
         this.isCompra = false;

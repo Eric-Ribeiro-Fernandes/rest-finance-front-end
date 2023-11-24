@@ -6,6 +6,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ApiFinanceService } from 'src/app/services/api-finance.service';
+import { ApiLancarOperacaoService } from 'src/app/services/api-lancar-operacao.service';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-form-compra',
@@ -13,7 +16,10 @@ import {
   styleUrls: ['./form-compra.component.css'],
 })
 export class FormCompraComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: ApiLancarOperacaoService
+  ) {}
 
   data = '';
   ticker = '';
@@ -56,5 +62,20 @@ export class FormCompraComponent implements OnInit {
 
       this.form.controls['totalCompra'].setValue(this.totalCompra);
     });
+  }
+
+  onSubmit() {
+    this.form.controls['ticker'].setValue(
+      this.form.controls['ticker'].value.toLocaleUpperCase()
+    );
+
+    const dados = this.form.value;
+    dados.id = uuid.v4();
+
+    this.service.registrarCompra(dados).subscribe();
+
+    alert('Compra registrada');
+    this.form.reset();
+    this.ngOnInit();
   }
 }

@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { Informacoes } from 'src/app/models/informacoes';
 import { ApiFinanceService } from 'src/app/services/api-finance.service';
 import { PlotlyTemplate } from 'src/app/models/plotly-template';
@@ -11,14 +17,17 @@ import { json } from 'd3';
   templateUrl: './pesquise-ticker-informacoes.component.html',
   styleUrls: ['./pesquise-ticker-informacoes.component.css'],
 })
-export class PesquiseTickerInformacoesComponent implements OnInit {
+export class PesquiseTickerInformacoesComponent implements OnInit, OnChanges {
   @Input() respostaInformacoes?: Informacoes;
   @Input() respostaCandle?: PlotlyTemplate;
   @Input() respostaCotacaoBovespa?: Cotacao;
   @Input() respostaCotacaoAtivoDia?: Cotacao;
-  @Input() bovespaHoje?: number;
-  @Input() bovespaAnterior?: number;
   @Input() respostaDividendos?: Dividendos;
+  @Input() ticker?: string;
+
+  bovespaHoje?: number;
+
+  bovespaAnterior?: number;
 
   public msgInfoSemTicker = {
     text: 'Informe um ativo para ser buscado...',
@@ -26,6 +35,9 @@ export class PesquiseTickerInformacoesComponent implements OnInit {
   };
 
   constructor(private service: ApiFinanceService) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.dados();
+  }
 
   ngOnInit(): void {}
 
@@ -93,7 +105,6 @@ export class PesquiseTickerInformacoesComponent implements OnInit {
       return Date.parse(datanum.Date) > dataAnterior.getTime();
     });
 
-    console.log('Dados Filtrados' + JSON.stringify(dadosFiltrados));
     let soma = 0;
 
     dadosFiltrados.forEach((datanum) => {
@@ -113,7 +124,6 @@ export class PesquiseTickerInformacoesComponent implements OnInit {
       return Date.parse(datanum.Date) > dataAnterior.getTime();
     });
 
-    console.log('Dados Filtrados' + JSON.stringify(dadosFiltrados));
     let soma = 0;
 
     dadosFiltrados.forEach((datanum) => {
@@ -124,6 +134,7 @@ export class PesquiseTickerInformacoesComponent implements OnInit {
   }
 
   public dados(): void {
+    this.ticker = this.service.ticker;
     this.respostaInformacoes = this.service.respostaInformacoes;
     this.respostaCandle = this.service.respostaCandle;
     this.respostaCotacaoBovespa = this.service.respostaCotacaoBovespa;
