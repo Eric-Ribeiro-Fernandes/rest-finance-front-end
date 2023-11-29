@@ -148,7 +148,7 @@ export class PesquiseTickerCabecalhoComponent implements OnInit {
 
   loading(isLoading: boolean): string {
     if (isLoading) {
-      return 'pi pi-spin pi-spinner';
-    } else return '';
+      return 'pi pi-spin pi-spinner me-2';
+    } else return 'pi pi-search me-2';
   }
 }

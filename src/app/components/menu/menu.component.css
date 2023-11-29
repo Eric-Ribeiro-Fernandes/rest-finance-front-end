@@ -1,6 +1,5 @@
 .img_bag_money {
-  margin: 32px;
-  border-radius: 128px;
+  max-width: 48px;
 }
 
 .img-container {

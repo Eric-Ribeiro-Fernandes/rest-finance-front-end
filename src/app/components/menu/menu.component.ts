@@ -27,7 +27,16 @@ export class MenuComponent implements OnInit {
       routerLink: 'pesquise-ticker',
     },
   ];
+
   constructor(private routes: Router) {}
 
   ngOnInit(): void {}
+
+  navigateLancarOPeracoes() {
+    this.routes.navigate(['lancar-operacao']);
+  }
+
+  navigatePesquiseTicker() {
+    this.routes.navigate(['pesquise-ticker']);
+  }
 }

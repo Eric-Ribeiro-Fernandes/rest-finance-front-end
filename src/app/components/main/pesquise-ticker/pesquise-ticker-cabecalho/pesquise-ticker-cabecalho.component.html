@@ -1,16 +1,26 @@
 <div class="container-input-procurar-ticker">
-    <br>
-    <label class="app-label" for="input-procurar-ticker">Buscar Ticker</label>
+  <br />
+  <label class="app-label" for="input-procurar-ticker"> Buscar Ticker</label>
 
-    <span class="p-input-icon-right ">
-        <input class="app-input-text" id="input-procurar-ticker" type="text" pInputText placeholder="ex: BBAS3"
-            [(ngModel)]="tickerASerBuscado" (keyup.enter)="buscarInformacoes(tickerASerBuscado)" />
-        <i [ngClass]="loading(this.isLoading)"></i>
-    </span>
+  <span class="p-input-icon-right">
+    <input
+      class="app-input-text"
+      id="input-procurar-ticker"
+      type="text"
+      pInputText
+      placeholder="ex: BBAS3"
+      [(ngModel)]="tickerASerBuscado"
+      (keyup.enter)="buscarInformacoes(tickerASerBuscado)"
+      onfocus="this.select()"
+      autofocus
+    />
+    <i [ngClass]="loading(this.isLoading)"></i>
+  </span>
 
-    <p-button class="app-button p-button-raised" icon="pi pi-search input-icon "
-        (onClick)="buscarInformacoes(tickerASerBuscado)">
-    </p-button>
-
-
+  <!-- <p-button
+    class="app-button p-button-raised"
+    icon="pi pi-search input-icon "
+    (onClick)="buscarInformacoes(tickerASerBuscado)"
+    >
+  </p-button> -->
 </div>

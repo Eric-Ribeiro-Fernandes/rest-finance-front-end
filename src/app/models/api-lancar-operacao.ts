@@ -1,7 +1,3 @@
-export interface Compras {
-  compras: Compra[];
-}
-
 export interface Compra {
   id: string;
   data: Date;

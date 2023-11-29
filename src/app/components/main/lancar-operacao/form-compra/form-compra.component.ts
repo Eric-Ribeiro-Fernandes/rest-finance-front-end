@@ -47,6 +47,8 @@ export class FormCompraComponent implements OnInit {
       totalCompra: [this.totalCompra],
     });
 
+    this.form.controls['totalCompra'].disable();
+
     // Campos reativos
     this.form.controls['precoPago'].valueChanges.subscribe((valor) => {
       const qtd = this.form.get('quantidade')?.value;

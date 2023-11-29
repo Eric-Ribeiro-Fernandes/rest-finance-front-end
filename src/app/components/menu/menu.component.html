@@ -1,11 +1,70 @@
-<div class="img-container">
-  <img
-    src="../../../assets/img/menu_bag_money.svg"
-    class="img_bag_money"
-    alt="Bolsa com dinheiro"
-  />
-  <br />
-</div>
-<div class="card flex justify-content-center">
-  <p-panelMenu [model]="items" [style]="{ width: '97%' }"></p-panelMenu>
-</div>
+<!-- <div class="container d-flex">
+  <div class="card flex justify-content-center">
+    <p-panelMenu class="nav" [model]="items" [style]="{ width: '97%' }">
+      <div class="w-25">
+        <br />
+      </div>
+    </p-panelMenu>
+  </div>
+</div> -->
+
+<nav class="navbar navbar-expand-sm bg-body-tertiary py-2">
+  <div class="container">
+    <img
+      src="../../../assets/img/menu_bag_money.svg"
+      class="img_bag_money rounded-5 mx-3"
+      alt="Bolsa com dinheiro"
+      style="cursor: pointer"
+      (click)="navigatePesquiseTicker()"
+    />
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarScroll">
+      <ul
+        class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll nav-underline"
+      >
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item my-3">Meu portifólio</a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item my-3"
+                  (click)="navigateLancarOPeracoes()"
+                  >Lançar operações de venda/compra</a
+                >
+              </li>
+            </ul>
+            Minha área
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            role="button"
+            class="nav-link"
+            aria-current="page"
+            (click)="navigatePesquiseTicker()"
+            >Pesquisar um ticker</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

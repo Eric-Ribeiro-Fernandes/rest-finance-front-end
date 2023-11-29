@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Compra, Compras } from '../models/api-lancar-operacao';
+import { Compra } from '../models/api-lancar-operacao';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,6 @@ export class ApiLancarOperacaoService {
   }
 
   listarCompras() {
-    return this.http.get<Compras>(this.API + '/historicoCompras');
+    return this.http.get<Compra[]>(this.API + '/historicoCompras');
   }
 }
